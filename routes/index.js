@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
 // Test the sequelize mysql connection. Should display json of the test database items.
 router.get('/test', function (req, res, next) {
   db.testTable.findAll().then(function (data) {
+    console.log(data);
     res.json(data);
   });
 });
