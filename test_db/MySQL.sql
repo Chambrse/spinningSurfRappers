@@ -1,3 +1,3 @@
-create database database_development;
+create database Tweet_emotion_tracker;
 
-use database_development;
+use Tweet_emotion_tracker;
