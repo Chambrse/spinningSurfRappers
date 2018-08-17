@@ -25,7 +25,7 @@ router.get('/test', function (req, res, next) {
 });
 
 router.get('/sentimentTest/:handle', function (req, res, next) {
-  var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
+/*   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
   
       if (error) {
@@ -54,7 +54,11 @@ router.get('/sentimentTest/:handle', function (req, res, next) {
           })
           .catch(function (err) { console.log(err); });
   
-  });
+  }); */
+/* 
+  client.get('search/tweets', {q: '', result_type: "popular"}, function(error, tweets, response) {
+    res.json(tweets);
+  }); */
 });
 
 module.exports = router;
