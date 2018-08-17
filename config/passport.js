@@ -40,13 +40,12 @@ passport.use(new GoogleStrategy(
     clientID: "1063733986592-3lovnul3f88hlut58db4rvcd8a1hbcaf.apps.googleusercontent.com",
     clientSecret: "8Cqw1H323IjCwCNvyRuUdwMq"
   }, (accessToken, refreshToken, profile, done) => {
-    // db.User.create({
     console.log(profile);
-    db.User.create({
-      email: profile.emails[0].value,
-      externalID: profile.id,
-      password: '123456'
-    })
+    // db.User.create({
+    //   email: profile.emails[0].value,
+    //   externalID: profile.id,
+    //   password: '123456'
+    // })
     // })
   }));
 
