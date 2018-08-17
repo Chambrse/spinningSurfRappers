@@ -8,3 +8,8 @@ exports.twitter = {
 exports.indico = {
     api_key: process.env.INDICO_API_KEY
 };
+
+exports.google = {
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET
+}
