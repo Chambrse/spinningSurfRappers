@@ -7,4 +7,12 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+app.get("/api/handles", function(req, res){
+  db.UserDetails.findAll({
+      include: [db.handles]
+  }).then(function(dbUserDetails){
+      res.json(dbUserDetails);
+  });
+});
+app.get("/api/")
 module.exports = router;
