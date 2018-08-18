@@ -25,7 +25,6 @@ router.get('/test', function (req, res, next) {
     res.json(data);
   });
 });
-
 router.get('/sentimentTest/:handle', function (req, res, next) {
 /*   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {

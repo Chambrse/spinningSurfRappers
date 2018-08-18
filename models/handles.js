@@ -5,8 +5,8 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
         }
     });
-    Handles.associate = function(models){
-        Handles.belongsTo(models.UserDetails,{
+    Handles.associate = function (models) {
+        Handles.belongsTo(models.UserDetails, {
             foreignKey: {
                 allowNull: false
             }
