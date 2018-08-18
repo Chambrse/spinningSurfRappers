@@ -173,7 +173,7 @@ var data = [
     
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('underConstruction', {items: modifiedArray});
+  res.render('index', {items: modifiedArray});
 });
 
 // Test the sequelize mysql connection. Should display json of the test database items.
