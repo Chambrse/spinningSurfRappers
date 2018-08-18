@@ -195,20 +195,15 @@ router.get('/sentimentTest/:handle', function (req, res, next) {
       res.json(tweets);
 
 /*       let tweetsTextArray = [];
-
       tweets.forEach(element => {
         tweetsTextArray.push(element.full_text);
       });
-
-
       indico.emotion(tweetsTextArray)
           .then(function (emotions) {
             let tweetsObj = []
-
             emotions.forEach(function (element, index) {
               tweetsObj.push({ text: tweetsTextArray[index], emotions: element});
             });
-
             res.json(tweetsObj);
           })
           .catch(function (err) { console.log(err); });

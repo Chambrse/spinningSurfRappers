@@ -24,7 +24,7 @@ let doIt = function () {
     , result_type: "popular", tweet_mode: 'extended', count: 50
   }, function (error, tweets, response) {
 
-    if (error) throw error;
+    // if (error) throw error;
 
     // Grab the important stuff
     let tweetObjArray = [];
