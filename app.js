@@ -4,10 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// Get the api keys into env variables
+require("dotenv").config();
 
+// Run the function that gets new popular tweets at a scheduled time (every 12 hours).
+require("./tasks/getPopular")();
+
+var indexRouter = require('./routes/index-routes');
 var app = express();
+
+// Sequelize db
 var db = require("./models");
 
 var PORT = process.env.PORT || 8080;
@@ -23,7 +29,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,6 +46,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//Start up the app and sequelize
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     // Log (server-side) when our server has started
