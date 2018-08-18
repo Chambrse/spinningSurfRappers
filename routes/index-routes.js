@@ -165,10 +165,7 @@ var data = [
     // console.log(emotion);
     // console.log(tweet);
   }
-
-  
-  console.log(modifiedArray)
-    
+      
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {items: modifiedArray});

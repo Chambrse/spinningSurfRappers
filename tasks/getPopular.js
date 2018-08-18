@@ -14,7 +14,7 @@ let db = require("../models");
 var schedule = require('node-schedule');
 
 // Run once 
-let startupCall = false;
+let startupCall = true;
 
 let doIt = function () {
 
@@ -39,17 +39,6 @@ let doIt = function () {
         // Grab the important stuff
         let tweetObjArray = [];
         tweets.statuses.forEach(function (element, index) {
-          
-          let dominantEmotion;
-          let currentEmotions = emotions[index];
-          let highestNumber = 0;
-          for (key in currentEmotions) {
-            if (currentEmotions[key] > highestNumber) {
-              highestNumber = currentEmotions[key];
-              dominantEmotion = key;
-            }
-          }
-
           tweetObjArray.push({
             tweet_created_at: element.created_at,
             tweet_body: element.full_text,
@@ -57,8 +46,7 @@ let doIt = function () {
             poster_profile_image: element.user.profile_image_url,
             retweets: element.retweet_count,
             favorites: element.favorite_count,
-            emotions: JSON.stringify(emotions[index]),
-            dominant_emotion: dominantEmotion
+            emotions: JSON.stringify(emotions[index])
           });
         });
 

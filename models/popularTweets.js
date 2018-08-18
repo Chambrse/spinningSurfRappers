@@ -27,6 +27,10 @@ module.exports = function (sequelize, DataTypes) {
         emotions: {
             type: DataTypes.STRING,
             allownull: false
+        },
+        dominant_emotion: {
+            type: DataTypes.STRING,
+            allownull: false
         }
     });
 
