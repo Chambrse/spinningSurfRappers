@@ -202,6 +202,17 @@ router.get('/sentiment/:handle', function (req, res, next) {
             // Grab the important stuff
             let tweetObjArray = [];
             tweets.forEach(function (element, index) {
+
+              let dominantEmotion;
+              let currentEmotions = emotions[index];
+              let highestNumber = 0;
+              for (key in currentEmotions) {
+                if (currentEmotions[key] > highestNumber) {
+                  highestNumber = currentEmotions[key];
+                  dominantEmotion = key;
+                }
+              };
+
               tweetObjArray.push({
                 tweet_created_at: element.created_at,
                 tweet_body: element.full_text,
@@ -209,7 +220,8 @@ router.get('/sentiment/:handle', function (req, res, next) {
                 poster_profile_image: element.user.profile_image_url,
                 retweets: element.retweet_count,
                 favorites: element.favorite_count,
-                emotions: JSON.stringify(emotions[index])
+                emotions: JSON.stringify(emotions[index]),
+                dominant_emotion: dominantEmotion
               });
             });
 
