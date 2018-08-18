@@ -3,30 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var passport = require('./config/passport.js');
-var session = require("express-session");
 
-<<<<<<< HEAD
-=======
-// Directions for our routers
-var indexRouter = require('./routes/index.js');
-var usersRouter = require('./routes/user_details-api-routes.js');
-// var authRouter = require('./routes/auth-routes.js');
-// Get the api keys into env variables
-require("dotenv").config();
-
->>>>>>> ddcda3a8d5afb925ec4dc8b080b7d381c8a969c8
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
 require("./tasks/getPopular")();
 
 var indexRouter = require('./routes/index-routes');
-var usersRouter = require('./routes/user-details-routes');
-
+//var usersRouter = require('./routes/user-details-routes');
 
 // Get the api keys into env variables
 require("dotenv").config();
 
 var app = express();
+
+//d3 
+var d3 = require('d3');
 
 // Sequelize db
 var db = require("./models");
@@ -42,15 +32,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// We need to use sessions to keep track of our user's login status
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Routes
-require('./routes/auth-routes.js')(app);
-require('./routes/handles-api-routes.js')(app);
 
 app.use('/', indexRouter);
 
