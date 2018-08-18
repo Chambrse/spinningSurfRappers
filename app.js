@@ -1,3 +1,4 @@
+require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,11 +8,11 @@ var passport = require('./config/passport.js');
 var session = require("express-session");
 
 // Directions for our routers
-var indexRouter = require('./routes/index.js');
+var indexRouter = require('./routes/index-routes');
 var usersRouter = require('./routes/user_details-api-routes.js');
 // var authRouter = require('./routes/auth-routes.js');
 // Get the api keys into env variables
-require("dotenv").config();
+
 
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
 require("./tasks/getPopular")();
@@ -62,7 +63,7 @@ app.use(function(err, req, res, next) {
 });
 
 //Start up the app and sequelize
-db.sequelize.sync().then(function () {
+db.sequelize.sync({force: true}).then(function () {
   app.listen(PORT, function () {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);

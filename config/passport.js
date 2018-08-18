@@ -3,7 +3,6 @@ var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth20");
 var db = require("../models");
 var keys = require("../keys.js");
-console.log(keys)
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(new LocalStrategy(
   // Our user will sign in using an email, rather than a "username"
@@ -12,11 +11,13 @@ passport.use(new LocalStrategy(
   },
   function (email, password, done) {
     // When a user tries to sign in this code runs
-    db.User.findOne({
+    console.log(email,password);
+    db.UserDetails.findOne({
       where: {
         email: email
       }
     }).then(function (dbUser) {
+      console.log('this user', dbUser);
       // If there's no user with the given email
       if (!dbUser) {
         return done(null, false, {
@@ -24,7 +25,7 @@ passport.use(new LocalStrategy(
         });
       }
       // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!dbUser.validPassword(password)) {
+      else if (dbUser.dataValues.Password !== (password)) {
         return done(null, false, {
           message: "Incorrect password."
         });
@@ -49,7 +50,9 @@ passport.use(new GoogleStrategy(
     }).then(function (dbUser) {
       if (!dbUser) {
         db.UserDetails.create({
-          //stuff 
+          User_name:'',
+          Password:'',
+          email: ''
         }).then(function (dbUser) {
           return done(null, dbUser);
         });
