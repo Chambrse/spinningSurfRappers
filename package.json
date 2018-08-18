@@ -11,6 +11,7 @@
     "dot-env": "0.0.1",
     "dotenv": "^6.0.0",
     "express": "~4.16.0",
+    "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "indico.io": "^0.10.5",
