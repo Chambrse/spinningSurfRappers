@@ -2,7 +2,8 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth20");
 var db = require("../models");
-// var keys = require("./keys.js");
+var keys = require("../keys.js");
+console.log(keys)
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(new LocalStrategy(
   // Our user will sign in using an email, rather than a "username"
@@ -37,16 +38,27 @@ passport.use(new LocalStrategy(
 passport.use(new GoogleStrategy(
   {
     callbackURL: "/auth/google/redirect",
-    clientID: "1063733986592-3lovnul3f88hlut58db4rvcd8a1hbcaf.apps.googleusercontent.com",
-    clientSecret: "8Cqw1H323IjCwCNvyRuUdwMq"
+    clientID: keys.google.clientID,
+    clientSecret: keys.google.clientSecret
   }, (accessToken, refreshToken, profile, done) => {
     console.log(profile);
-    // db.User.create({
-    //   email: profile.emails[0].value,
-    //   externalID: profile.id,
-    //   password: '123456'
-    // })
-    // })
+    db.UserDetails.findOne({
+      where: {
+        somekindofID: profile.id
+      }
+    }).then(function (dbUser) {
+      if (!dbUser) {
+        db.UserDetails.create({
+          //stuff 
+        }).then(function (dbUser) {
+          return done(null, dbUser);
+        });
+      }
+      else {
+        return done(null, dbUser);
+      }
+    });
+
   }));
 
 // In order to help keep authentication state across HTTP requests,
