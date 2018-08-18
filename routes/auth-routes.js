@@ -1,26 +1,24 @@
-var express = require('express');
+// var express = require('express');
+// var router = express.Router();
+// Shouldn't need these if we do this apropiately
+
 var db = require("../models");
-var router = express.Router();
 const passport = require("passport");
 const path = require("path");
+// Need these however
 
-//all these routes will ALWAYS start with /auth/
+module.exports = function (app) {
+    app.get('/auth/login/google', passport.authenticate("google",
+        {
+            scope: ['profile', 'email']
+        }
+    ));
 
-router.get('/login/google', passport.authenticate("google",
-    {
-        scope: ['profile', 'email']
-    }));
+    app.get('/auth/google/redirect', passport.authenticate("google"), (req, res) => {
+        res.redirect('/');
+    });
 
-router.get('/auth/google/redirect', passport.authenticate("google"), (req, res) => {
-
-});;
-
-router.get('/login', function (req, res) {
-    // res.render('login', {});
-    res.sendFile(path.join(__dirname, "../public/login.html"));
-});
-
-router.get('/google/redirect', passport.authenticate("google"), (req,res) => {
-        
-});
-module.exports = router;
+    app.get('/login', function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/login.html"));
+    });
+}

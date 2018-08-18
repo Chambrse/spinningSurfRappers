@@ -1,13 +1,16 @@
+require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('./config/passport.js');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/user_details-api-routes');
-var authRouter = require('./routes/auth-routes.js');
-var passport = require('./config/passport.js')
+
+// Directions for our routers
+var indexRouter = require('./routes/index.js');
+var usersRouter = require('./routes/user_details-api-routes.js');
+// var authRouter = require('./routes/auth-routes.js');
 
 var app = express();
 var db = require("./models");
@@ -24,9 +27,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes
+require('./routes/auth-routes.js')(app);
+require('./routes/handles-api-routes.js')(app);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
