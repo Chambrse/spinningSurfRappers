@@ -1,3 +1,4 @@
+
 exports.twitter = {
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
     consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
@@ -8,3 +9,8 @@ exports.twitter = {
 exports.indico = {
     api_key: process.env.INDICO_API_KEY
 };
+
+exports.google = {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET
+}
