@@ -126,16 +126,19 @@
     
 
         {{#each items}}
-        <p> {{tweet}} </p>
-        {{#if joy}}
-        <p> Joy emotioncon goes here</p>
-        {{/if}} {{/each}}
 
-        {{#each items}}
-        <p> {{tweet}} </p>
-        {{#if Anger}}
-        <p> Anger emotioncon goes here</p>
-        {{/if}} {{/each}}
+        <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body"><p> {{tweet_body}} </p>
+        </div>
+    </div>
+    </div>
+      
+      
+             
+        {{/each}}
+
+   
         
         
  </div>

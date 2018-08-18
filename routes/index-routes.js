@@ -165,7 +165,7 @@ var data = [
     // console.log(emotion);
     // console.log(tweet);
   }
-  
+
   
   console.log(modifiedArray)
     
@@ -177,7 +177,7 @@ router.get('/', function (req, res, next) {
 // Test the sequelize mysql connection. Should display json of the test database items.
 router.get('/test', function (req, res, next) {
   db.popularTweets.findAll().then(function (data) {
-    res.render("index", data);
+    res.render("index", {items: data});
   });
 });
 
