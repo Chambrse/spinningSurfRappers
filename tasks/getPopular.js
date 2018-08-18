@@ -27,7 +27,6 @@ let doIt = function () {
     if (error) throw error;
 
     let tweetsTextArray = [];
-    let emotions;
 
     tweets.statuses.forEach(element => {
       tweetsTextArray.push(element.full_text);
@@ -70,7 +69,6 @@ let doIt = function () {
       })
       .catch(function (err) { console.log(err); });
 
-
   });
 };
 
@@ -79,15 +77,14 @@ module.exports = function getPopular() {
   if (startupCall) {
 
     doIt();
-
     startupCall = false;
+
   } else {
 
     var j = schedule.scheduleJob('0 0 0,12 * *', function () {
-
       doIt();
-
     });
+
   };
 };
 
