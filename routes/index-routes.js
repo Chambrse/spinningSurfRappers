@@ -1,13 +1,11 @@
 var express = require('express');
 var db = require("../models");
 var router = express.Router();
-
-require("dotenv").config();
+var path = require("path");
 
 const keys = require('../keys.js');
 var Twitter = require('twitter');
 var client = new Twitter(keys.twitter);
-var request = require('request');
 var indico = require('indico.io');
 indico.apiKey = keys.indico.api_key;
 
@@ -178,14 +176,15 @@ router.get('/', function (req, res, next) {
 
 // Test the sequelize mysql connection. Should display json of the test database items.
 router.get('/test', function (req, res, next) {
-  db.testTable.findAll().then(function (data) {
-    console.log(data);
+  db.popularTweets.findAll().then(function (data) {
     res.json(data);
   });
 });
 
+
+//Just messing around with the APIS
 router.get('/sentimentTest/:handle', function (req, res, next) {
-/*   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
+  var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
   
       if (error) {
@@ -193,9 +192,9 @@ router.get('/sentimentTest/:handle', function (req, res, next) {
           return;
       };
 
-      // res.json(tweets);
+      res.json(tweets);
 
-      let tweetsTextArray = [];
+/*       let tweetsTextArray = [];
 
       tweets.forEach(element => {
         tweetsTextArray.push(element.full_text);
@@ -213,8 +212,8 @@ router.get('/sentimentTest/:handle', function (req, res, next) {
             res.json(tweetsObj);
           })
           .catch(function (err) { console.log(err); });
-  
-  }); */
+   */
+  });
 /* 
   client.get('search/tweets', {q: '', result_type: "popular"}, function(error, tweets, response) {
     res.json(tweets);

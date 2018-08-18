@@ -13,8 +13,8 @@
             <li class="uk-active"><a href="#">About</a></li>
             <br>
             <li class="uk-active"><a href="#">The Team</a></li>
-            <li class="uk-active"><a href="#">Aishu</a></li>
-            <li class="uk-active"><a href="#">Matthew</a></li>
+            <li class="uk-active"><a href="https://aishucr.github.io/New_profile/"> </a></li>
+            <li class="uk-active"><a href="#">Matthew Bertrandt</a></li>
             <li class="uk-active"><a href="https://renatawattier.github.io/portfolio/.">Renata Wattier</a></li>
             <li class="uk-active"><a href="https://shanechambry.com">Shane Chambry</a></li>
             </ul>
@@ -122,29 +122,25 @@
 <div class="uk-h3 uk-text-large uk-text-bold uk-text-center">
     Trending</div>
 <div class="uk-child-width-1-3@m" uk-grid uk-lightbox="animation: scale">
-    <div class="uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url(https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);">
+    {{!-- <div class="uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url(https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);"> --}}
     
 
         {{#each items}}
         <p> {{tweet}} </p>
-        {{#if anger}}
-        <p>Anger emotioncon goes here</p>
+        {{#if joy}}
+        <p> Joy emotioncon goes here</p>
         {{/if}} {{/each}}
-    
 
-</div>
-<div>
-    <a class="uk-inline" href="https://images.pexels.com/photos/6111/smartphone-friends-internet-connection.jpg?auto=compress&cs=tinysrgb&h=350 data-caption="
-        data-Caption="caption 2">
-        <img src="https://images.pexels.com/photos/6111/smartphone-friends-internet-connection.jpg?auto=compress&cs=tinysrgb&h=350 data-caption="
-            alt="">
-    </a>
-</div>
-<div>
-    <a class="uk-inline" href="https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        data-caption="Caption 3">
-        <img src="https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            alt="">
-    </a>
-</div>
-</div>
+        {{#each items}}
+        <p> {{tweet}} </p>
+        {{#if Anger}}
+        <p> Anger emotioncon goes here</p>
+        {{/if}} {{/each}}
+        
+        
+ </div>
+
+
+
+
+
