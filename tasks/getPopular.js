@@ -26,22 +26,39 @@ let doIt = function () {
 
     if (error) throw error;
 
-    // Grab the important stuff
-    let tweetObjArray = [];
+    let tweetsTextArray = [];
+    let emotions;
+
     tweets.statuses.forEach(element => {
-      tweetObjArray.push({
-        tweet_created_at: element.created_at,
-        tweet_body: element.full_text,
-        poster_handle: element.user.screen_name,
-        retweets: element.retweet_count,
-        favorites: element.favorite_count
-      });
+      tweetsTextArray.push(element.full_text);
     });
 
-    // Smack 'em into the database
-    db.popularTweets.bulkCreate(tweetObjArray).then(function (data) {
-      console.log("Popular tweets have been updated!");
-    });
+    indico.emotion(tweetsTextArray)
+      .then(function (emotions) {
+
+        // Grab the important stuff
+        let tweetObjArray = [];
+        tweets.statuses.forEach(function (element, index) {
+          tweetObjArray.push({
+            tweet_created_at: element.created_at,
+            tweet_body: element.full_text,
+            poster_handle: element.user.screen_name,
+            poster_profile_image: element.user.profile_image_url,
+            retweets: element.retweet_count,
+            favorites: element.favorite_count,
+            emotions: JSON.stringify(emotions[index])
+          });
+        });
+
+        // Smack 'em into the database
+        db.popularTweets.bulkCreate(tweetObjArray).then(function (data) {
+          console.log("Popular tweets have been updated!");
+        });
+
+      })
+      .catch(function (err) { console.log(err); });
+
+
   });
 };
 
