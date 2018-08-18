@@ -1,4 +1,3 @@
-require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,8 +10,16 @@ var session = require("express-session");
 var indexRouter = require('./routes/index.js');
 var usersRouter = require('./routes/user_details-api-routes.js');
 // var authRouter = require('./routes/auth-routes.js');
+// Get the api keys into env variables
+require("dotenv").config();
 
+// Run the function that gets new popular tweets at a scheduled time (every 12 hours).
+require("./tasks/getPopular")();
+
+var indexRouter = require('./routes/index-routes');
 var app = express();
+
+// Sequelize db
 var db = require("./models");
 
 var PORT = process.env.PORT || 8080;
@@ -37,7 +44,6 @@ require('./routes/auth-routes.js')(app);
 require('./routes/handles-api-routes.js')(app);
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,6 +61,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//Start up the app and sequelize
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     // Log (server-side) when our server has started
