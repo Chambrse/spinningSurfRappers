@@ -4,18 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-<<<<<<< HEAD
-var indexRouter = require('./routes/index-routes');
-var usersRouter = require('./routes/user-details-routes');
-=======
-// Get the api keys into env variables
-require("dotenv").config();
->>>>>>> 33f1ba6bea9979188c0be0fbf45379e0e56a1297
-
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
 require("./tasks/getPopular")();
 
 var indexRouter = require('./routes/index-routes');
+var usersRouter = require('./routes/user-details-routes');
+
+
+// Get the api keys into env variables
+require("dotenv").config();
+
 var app = express();
 
 // Sequelize db
