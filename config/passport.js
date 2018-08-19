@@ -43,24 +43,24 @@ passport.use(new GoogleStrategy(
     clientSecret: keys.google.clientSecret
   }, (accessToken, refreshToken, profile, done) => {
     console.log(profile);
-    db.UserDetails.findOne({
-      where: {
-        somekindofID: profile.id
-      }
-    }).then(function (dbUser) {
-      if (!dbUser) {
-        db.UserDetails.create({
-          User_name:'',
-          Password:'',
-          email: ''
-        }).then(function (dbUser) {
-          return done(null, dbUser);
-        });
-      }
-      else {
-        return done(null, dbUser);
-      }
-    });
+    // db.UserDetails.findOne({
+    //   where: {
+    //     somekindofID: profile.id
+    //   }
+    // }).then(function (dbUser) {
+    //   if (!dbUser) {
+    //     db.UserDetails.create({
+    //       User_name:'',
+    //       Password:'',
+    //       email: ''
+    //     }).then(function (dbUser) {
+    //       return done(null, dbUser);
+    //     });
+    //   }
+    //   else {
+    //     return done(null, dbUser);
+    //   }
+    // });
 
   }));
 
