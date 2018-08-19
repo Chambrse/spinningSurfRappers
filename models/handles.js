@@ -1,3 +1,4 @@
+var users = require('../models/userDetails.js');
 module.exports = function (sequelize, DataTypes) {
     var Handles = sequelize.define("Handles", {
         //for Tweets
@@ -5,12 +6,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
         }
     });
+    
     Handles.associate = function(models){
-        Handles.belongsTo(models.UserDetails,{
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        Handles.hasMany(models.UsersHandles);
     }
+    
     return Handles;
 };

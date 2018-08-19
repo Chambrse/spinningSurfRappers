@@ -2,6 +2,7 @@
 
   
 <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>Welcome to Twitter Motions</a>
+<h2 class = "user-name"></h2>
 <div id="offcanvas-slide" uk-offcanvas>
     <div class="uk-offcanvas-bar">
 
@@ -23,29 +24,30 @@
             <div id="my-id" uk-modal>
                 <div class="uk-modal-dialog uk-modal-body">
                     <h2 class="uk-modal-title"> Passaport goes here</h2>
-                    <form class="uk-form-horizontal uk-margin-large">
+                    <form class="uk-form-horizontal uk-margin-large login">
 
                         <form>
 
                             <div class="uk-margin">
                                 <div class="uk-inline">
                                     <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                    <input class="uk-input" type="text">
+                                    <input class="uk-input login-email" type="text" placeholder="Username">
                                 </div>
                             </div>
                         
                             <div class="uk-margin">
                                 <div class="uk-inline">
                                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                    <input class="uk-input" type="text">
+                                    <input class="uk-input login-password" type="password" placeholder="Password">
                                 </div>
                             </div>
                         
                             <div class="uk-margin">
                                 <button class="uk-button uk-button-default uk-button-small">Log In</button>
                                 <!-- <button class="uk-modal-close" type="button">X</button> -->
+                                <p class='error-text'> Incorrect Email/Password</p>
                         </form>
-                                    
+                            
                                     
                                 </select>
                             </div>
@@ -65,18 +67,18 @@
        <div id="my-id1" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <h2 class="uk-modal-title"> Sign Up</h2>
-            <form class="uk-form-horizontal uk-margin-large">
+            <form class="uk-form-horizontal uk-margin-large signup">
 
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-text">Name</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-horizontal-text" type="text" placeholder="Please enter your Name">
+                        <input class="uk-input username-input" id="form-horizontal-text" type="text" placeholder="Please enter your Name">
                     </div>
                 </div>
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-horizontal-text">Username</label>
+                    <label class="uk-form-label" for="form-horizontal-text">Email</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-horizontal-text" type="text" placeholder="please enter your email">
+                        <input class="uk-input email-input" id="form-horizontal-text" type="text" placeholder="please enter your email">
                     </div>
                 </div>
             
@@ -84,24 +86,25 @@
                     <label class="uk-form-label" for="form-horizontal-select">Password</label>
                     <div class="uk-form-controls">
                         
-                        <input class="uk-input"  id="form-horizontal-text" type="text" placeholder="your password">
+                        <input class="uk-input password-input" id="form-horizontal-text" type="text" placeholder="your password">
                             
                         </select>
                     </div>
-                </div>
-
-
-
-                <form class="uk-form"> Date of Birth
-                        <input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">    
-                  </form>
-
-                <div class="uk-form-horizontal uk-margin-large">
-                    <button class="uk-button uk-button-default uk-button-small">Sing UP</button>
+                    <div class="uk-form-horizontal uk-margin-large">
+                    <button class="uk-button uk-button-default uk-button-small">Sign UP</button>
                     <!-- <button class="uk-modal-close" type="button">X</button> -->
                         
                     </div>
                 </div>
+                </div>
+
+
+
+                {{!-- <form class="uk-form"> Date of Birth
+                        <input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">    
+                  </form> --}}
+
+                
             
             </form>
             
