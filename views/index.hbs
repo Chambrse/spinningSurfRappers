@@ -30,26 +30,26 @@
                 <div class="uk-modal-dialog uk-modal-body">
                     <h2 class="uk-modal-title"> Passaport goes here</h2>
                     <form class="uk-form-horizontal uk-margin-large">
+            <form action="/login"> 
 
-                        <form>
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-horizontal-text">e-mail</label>
+                <div class="uk-form-controls">
+                  <input class="uk-input" name="email" type="email" required placeholder="Please enter your email">
+                </div>
+            </div>
 
-                            <div class="uk-margin">
-                                <div class="uk-inline">
-                                    <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                    <input class="uk-input" type="text">
-                                </div>
-                            </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-horizontal-select">Password</label>
+                    <div class="uk-form-controls">
+                      
+                        <input class="uk-input" name="password" type="password" required placeholder="your password">
+                            
+                        </select>
+                    </div>
+                </div>
+                    <input type="submit"  value="log in">
                         
-                            <div class="uk-margin">
-                                <div class="uk-inline">
-                                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                                    <input class="uk-input" type="text">
-                                </div>
-                            </div>
-                        
-                            <div class="uk-margin">
-                                <button class="uk-button uk-button-default uk-button-small">Log In</button>
-                                <!-- <button class="uk-modal-close" type="button">X</button> -->
                         </form>
                                     
                                     
@@ -71,18 +71,18 @@
        <div id="my-id1" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <h2 class="uk-modal-title"> Sign Up</h2>
-            <form class="uk-form-horizontal uk-margin-large">
+            <form class="uk-form-horizontal uk-margin-large" action="/signup" method="post">
 
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-horizontal-text">Name</label>
+                    <label class="uk-form-label" for="form-horizontal-text">e-mail</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-horizontal-text" type="text" placeholder="Please enter your Name">
+                        <input class="uk-input" name="email"  type="email" required placeholder="Please enter your email">
                     </div>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-text">Username</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-horizontal-text" type="text" placeholder="please enter your email">
+                        <input class="uk-input" name="username" type="text" required  placeholder="please enter your Name">
                     </div>
                 </div>
             
@@ -90,20 +90,14 @@
                     <label class="uk-form-label" for="form-horizontal-select">Password</label>
                     <div class="uk-form-controls">
                         
-                        <input class="uk-input"  id="form-horizontal-text" type="text" placeholder="your password">
+                        <input class="uk-input" name="password" type="password" required placeholder="your password">
                             
                         </select>
                     </div>
                 </div>
+                    <input type="submit" value="sign up">
 
 
-
-                <form class="uk-form"> Date of Birth
-                        <input type="text" data-uk-datepicker="{format:'DD.MM.YYYY'}">    
-                  </form>
-
-                <div class="uk-form-horizontal uk-margin-large">
-                    <button class="uk-button uk-button-default uk-button-small">Sing UP</button>
                     <!-- <button class="uk-modal-close" type="button">X</button> -->
                         
                     </div>
