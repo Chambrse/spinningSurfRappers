@@ -26,22 +26,49 @@ let doIt = function () {
 
     if (error) throw error;
 
-    // Grab the important stuff
-    let tweetObjArray = [];
+    let tweetsTextArray = [];
+
     tweets.statuses.forEach(element => {
-      tweetObjArray.push({
-        tweet_created_at: element.created_at,
-        tweet_body: element.full_text,
-        poster_handle: element.user.screen_name,
-        retweets: element.retweet_count,
-        favorites: element.favorite_count
-      });
+      tweetsTextArray.push(element.full_text);
     });
 
-    // Smack 'em into the database
-    db.popularTweets.bulkCreate(tweetObjArray).then(function (data) {
-      console.log("Popular tweets have been updated!");
-    });
+    indico.emotion(tweetsTextArray)
+      .then(function (emotions) {
+
+        // Grab the important stuff
+        let tweetObjArray = [];
+        tweets.statuses.forEach(function (element, index) {
+          
+          let dominantEmotion;
+          let currentEmotions = emotions[index];
+          let highestNumber = 0;
+          for (key in currentEmotions) {
+            if (currentEmotions[key] > highestNumber) {
+              highestNumber = currentEmotions[key];
+              dominantEmotion = key;
+            }
+          }
+
+          tweetObjArray.push({
+            tweet_created_at: element.created_at,
+            tweet_body: element.full_text,
+            poster_handle: element.user.screen_name,
+            poster_profile_image: element.user.profile_image_url,
+            retweets: element.retweet_count,
+            favorites: element.favorite_count,
+            emotions: JSON.stringify(emotions[index]),
+            dominant_emotion: dominantEmotion
+          });
+        });
+
+        // Smack 'em into the database
+        db.popularTweets.bulkCreate(tweetObjArray).then(function (data) {
+          console.log("Popular tweets have been updated!");
+        });
+
+      })
+      .catch(function (err) { console.log(err); });
+
   });
 };
 
@@ -50,15 +77,14 @@ module.exports = function getPopular() {
   if (startupCall) {
 
     doIt();
-
     startupCall = false;
+
   } else {
 
     var j = schedule.scheduleJob('0 0 0,12 * *', function () {
-
       doIt();
-
     });
+
   };
 };
 

@@ -165,10 +165,7 @@ var data = [
     // console.log(emotion);
     // console.log(tweet);
   }
-  
-  
-  console.log(modifiedArray)
-    
+      
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {items: modifiedArray});
@@ -177,24 +174,20 @@ router.get('/', function (req, res, next) {
 // Test the sequelize mysql connection. Should display json of the test database items.
 router.get('/test', function (req, res, next) {
   db.popularTweets.findAll().then(function (data) {
+    // res.render("index", data);
     res.json(data);
   });
 });
 
 
 //Just messing around with the APIS
-router.get('/sentimentTest/:handle', function (req, res, next) {
+router.get('/sentiment/:handle', function (req, res, next) {
   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
   
-      if (error) {
-          console.log("twitterError", error);
-          return;
-      };
+      if (error) throw error;
 
-      res.json(tweets);
-
-/*       let tweetsTextArray = [];
+      let tweetsTextArray = [];
 
       tweets.forEach(element => {
         tweetsTextArray.push(element.full_text);
@@ -203,21 +196,40 @@ router.get('/sentimentTest/:handle', function (req, res, next) {
 
       indico.emotion(tweetsTextArray)
           .then(function (emotions) {
-            let tweetsObj = []
 
-            emotions.forEach(function (element, index) {
-              tweetsObj.push({ text: tweetsTextArray[index], emotions: element});
+            // Grab the important stuff
+            let tweetObjArray = [];
+            tweets.forEach(function (element, index) {
+
+              let dominantEmotion;
+              let currentEmotions = emotions[index];
+              let highestNumber = 0;
+              for (key in currentEmotions) {
+                if (currentEmotions[key] > highestNumber) {
+                  highestNumber = currentEmotions[key];
+                  dominantEmotion = key;
+                }
+              };
+
+              tweetObjArray.push({
+                tweet_created_at: element.created_at,
+                tweet_body: element.full_text,
+                poster_handle: element.user.screen_name,
+                poster_profile_image: element.user.profile_image_url,
+                retweets: element.retweet_count,
+                favorites: element.favorite_count,
+                emotions: JSON.stringify(emotions[index]),
+                dominant_emotion: dominantEmotion
+              });
             });
 
-            res.json(tweetsObj);
+            res.json(tweetObjArray);
+
           })
           .catch(function (err) { console.log(err); });
-   */
+  
   });
-/* 
-  client.get('search/tweets', {q: '', result_type: "popular"}, function(error, tweets, response) {
-    res.json(tweets);
-  }); */
+
 });
 
 module.exports = router;

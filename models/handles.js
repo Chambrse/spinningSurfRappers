@@ -6,10 +6,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
         }
     });
-    // Handles.associate = function(models){
-    //     Handles.belongsToMany(models.UserDetails, {
-    //         through: users 
-    //     });
-    // }
+    Handles.associate = function(models){
+        Handles.belongsToMany(models.UserDetails, {
+            through: users 
+        });
+    }
     return Handles;
 };
