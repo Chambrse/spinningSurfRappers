@@ -161,23 +161,57 @@ var data = [
   
       modifiedArray.push({tweet: tweet, highestValue: highestValue, anger: anger, joy: joy, sadness: sadness, fear: fear, suprise: suprise})
   
-    // console.log(highestValue);
-    // console.log(emotion);
-    // console.log(tweet);
+    console.log(highestValue);
+    console.log(emotion);
+    console.log(tweet);
   }
       
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', {items: modifiedArray});
+/* GET user page */
+router.get('/user', function (req, res, next) {
+ res.render('user');
 });
 
+//get about page
+router.get('/about', function (req, res, next) {
+  res.render('about');
+ });
+
+
 // Test the sequelize mysql connection. Should display json of the test database items.
-router.get('/test', function (req, res, next) {
+router.get('/', function (req, res, next) {
   db.popularTweets.findAll().then(function (data) {
-    // res.render("index", data);
-    res.json(data);
+    res.render("index", {items: data});
   });
 });
+
+// sign up request 
+
+router.post('/signup', function(req, res, next){ 
+  //process the form data// 
+  console.log(req.body)
+  // create an user on the database
+    const user = db.UserDetails.build({
+      User_name: req.body.username,
+      Password: req.body.password,
+      email: req.body.email,
+    })
+
+  user
+  .save()
+  .then(savedUser => {
+    console.log("then", savedUser)
+    //userpage
+    res.redirect('/user')
+  })
+  .catch(error => {
+   console.log("catch", error)
+   //not sure what to do if they get an error
+  })
+
+})
+
+// log in post request
+
 
 
 //Just messing around with the APIS
@@ -192,8 +226,6 @@ router.get('/sentiment/:handle', function (req, res, next) {
       tweets.forEach(element => {
         tweetsTextArray.push(element.full_text);
       });
-
-
       indico.emotion(tweetsTextArray)
           .then(function (emotions) {
 
