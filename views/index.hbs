@@ -1,3 +1,4 @@
+<!--CSS-->
 <style>
 			nav.nav-scroll {
 				position: relative;
@@ -33,9 +34,11 @@
 			}
 			
 		</style>
+        <!--/CSS-->
 
+        <!--HEADER-->
 	<div class="uk-offcanvas-content">
-			<!--HEADER-->
+			
 			<header id="header" style="background-color: #fff;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
 				<div class="uk-container">
 					<nav id="navbar" data-uk-navbar="mode: click;">
@@ -143,7 +146,7 @@
             <!-- This is the modal for Log In -->
             <div id="my-id" uk-modal>
                 <div class="uk-modal-dialog uk-modal-body">
-                    <h2 class="uk-modal-title"> Passaport goes here</h2>
+                    <h2 class="uk-modal-title"> Log In to your account</h2>
                     <form class="uk-form-horizontal uk-margin-large login">
 
             <div class="uk-margin">
@@ -162,8 +165,8 @@
                          
                         
                             <div class="uk-margin">
-                                <button class="uk-button uk-button-default uk-button-small">Log In</button>
-                                <!-- <button class="uk-modal-close" type="button">X</button> -->
+                                <button class="uk-button uk-button-primary uk-button-large">Log In</button>
+                                 <button class="uk-modal-close" type="button">X</button>
                                 <p class='error-text'> Incorrect Email/Password</p>
                         </form>
                             
@@ -183,77 +186,37 @@
     </div>
 
        <!-- This is the modal for Sing up  -->
-       <div id="my-id1" uk-modal>
+    <div id="my-id1" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             <h2 class="uk-modal-title"> Sign Up</h2>
-            <form class="uk-form-horizontal uk-margin-large signup">
-
+    
+            <form class="uk-form-horizontal uk-margin-large" action="/signup" method="post">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-text">e-mail</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input username-input" type="email" required placeholder="email">
+                        <input class="uk-input" name="email" type="email" required placeholder="Please enter your email">
                     </div>
                 </div>
-                           
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-horizontal-text">Username</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" name="username" type="text" required placeholder="please enter your Name">
+                    </div>
+                </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-horizontal-select">Password</label>
                     <div class="uk-form-controls">
-                        
-                        <input class="uk-input password-input" required type="password" placeholder="your password">
-                    </div>        
+    
+                        <input class="uk-input" name="password" type="password" required placeholder="your password">
+    
                         </select>
-                    
-                    <div class="uk-form-horizontal uk-margin-large">
-                    <button class="uk-button uk-button-default uk-button-small">Sign UP</button>
-                    <!-- <button class="uk-modal-close" type="button">X</button> -->
-                        
                     </div>
                 </div>
-                </div>
-                    <input type="submit" value="sign up">
-
-               
-            
-            </form>
-            
+                <input type="submit" value="sign up">
+    
+    
         </div>
-    </div>
-</ul>
 
-</div>
-
-
-</div>
-{{!-- <div class="uk-cover-container uk-height-medium">
-        <video autoplay loop muted playsinline uk-cover>
-            <source src="https://ak7.picdn.net/shutterstock/videos/15464077/preview/stock-footage-a-close-up-of-a-video-counter-quickly-increasing-to-billion-views-perspective-version.mp4" type="video/mp4">
-            <!-- <source src="https://quirksmode.org/html5/videos/big_buck_bunny.ogv" type="video/ogg"> -->
-        </video>
-    </div> --}}
-{{!-- <div class="uk-h3 uk-text-large uk-text-bold uk-text-center">
-    Trending</div>
-<div class="uk-child-width-1@m uk-text-center" uk-grid uk-lightbox="animation: scale">
-    {{!-- <div class="uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url(https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);"> --}}
-    
- {{#each items}}
-
-<div class="uk-child-width-expand@s uk-text-center" uk-grid>
-    <div>
-        <div class="uk-card uk-card-default uk-card-body"> 
-        <img src= {{poster_profile_image}} >
-        <p> {{poster_handle}} </p>
-         <p> {{tweet_body}} </p>
-        
-
-         </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-default uk-card-body"><p> {{dominant_emotion}} </p></div>
-    </div>
-    
-</div>
-
-{{/each}}
 
 
         

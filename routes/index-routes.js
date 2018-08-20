@@ -200,8 +200,8 @@ router.post('/signup', function(req, res, next){
   .save()
   .then(savedUser => {
     console.log("then", savedUser)
-    //log in page
-    res.redirect('user')
+    //userpage
+    res.redirect('/user')
   })
   .catch(error => {
    console.log("catch", error)
