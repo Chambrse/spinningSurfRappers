@@ -1,5 +1,11 @@
 <!--CSS-->
 <style>
+            body{
+                background:
+                url(https://images.pexels.com/photos/1130643/pexels-photo-1130643.jpeg?auto=compress&cs=tinysrgb&h=350) 
+                no-repeat center center fixed; 
+                background-size: cover;
+            }
 			nav.nav-scroll {
 				position: relative;
 				z-index: 2;
@@ -7,7 +13,7 @@
 				box-sizing: border-box;
 				overflow-y: hidden;
 				padding: 1rem;
-				border-top: 1px solid rgba(0,0,0,0.075);
+				border-top: 1px solid rgba(207, 36, 36, 0.075);
 			}
 			nav.nav-scroll > ul {
 				overflow-x: auto;
@@ -32,6 +38,7 @@
 			#header.uk-sticky-below {
 				box-shadow: 0 2px 14px 0 rgba(0,0,0,0.07);
 			}
+                    
 			
 		</style>
         <!--/CSS-->
@@ -39,7 +46,7 @@
         <!--HEADER-->
 	<div class="uk-offcanvas-content">
 			
-			<header id="header" style="background-color: #fff;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
+			<header id="header" style="background-color: clear;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
 				<div class="uk-container">
 					<nav id="navbar" data-uk-navbar="mode: click;">
 						<div class="uk-navbar-left nav-overlay uk-visible@m">
@@ -54,16 +61,7 @@
 						</div>
 						<div class="uk-navbar-center nav-overlay">
 							<h2>Welcome to Twitter Motions</h2>
-						</div>
 					
-						<div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
-							<div class="uk-navbar-item uk-width-expand">
-								<form class="uk-search uk-search-navbar uk-width-1-1">
-									<input class="uk-search-input" type="search" placeholder="Search...">
-								</form>
-							</div>
-							<a class="uk-navbar-toggle" data-uk-close data-uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
-						</div>
 					</nav>
 				</div>
 			</header>
@@ -165,8 +163,8 @@
                          
                         
                             <div class="uk-margin">
-                                <button class="uk-button uk-button-primary uk-button-large">Log In</button>
-                                 <button class="uk-modal-close" type="button">X</button>
+                                <input type="submit" value="log in">
+                                 
                                 <p class='error-text'> Incorrect Email/Password</p>
                         </form>
                             
@@ -188,7 +186,7 @@
        <!-- This is the modal for Sing up  -->
     <div id="my-id1" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            <h2 class="uk-modal-title"> Sign Up</h2>
+            <h2 class="uk-modal-title"> Create a free account</h2>
     
             <form class="uk-form-horizontal uk-margin-large" action="/signup" method="post">
                 <div class="uk-margin">
