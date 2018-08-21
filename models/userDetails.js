@@ -23,10 +23,10 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [1, 150]
       }
-    } 
+    }
   });
-  UserDetails.associate = function(models) {
-    UserDetails.hasMany(models.Handles,{
+  UserDetails.associate = function (models) {
+    UserDetails.hasMany(models.UsersHandles, {
       onDelete: "CASCADE"
     });
   }
