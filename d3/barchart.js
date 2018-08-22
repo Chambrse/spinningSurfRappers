@@ -2,9 +2,7 @@ var margin = {top: 20, right: 20, bottom: 70, left: 40},
     width = 600 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 //data.csv instead bar-data.csv
-// Parse the date / time
-
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .1);
 
 var y = d3.scale.linear().range([height, 0]);
 
