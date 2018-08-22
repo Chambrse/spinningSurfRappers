@@ -22,7 +22,6 @@ module.exports = function (sequelize, DataTypes) {
     Handles.associate = function(models){
         Handles.hasMany(models.UsersHandles);
     }
-}
-    
+} 
     return Handles;
 }
