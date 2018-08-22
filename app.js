@@ -10,7 +10,7 @@ var session = require("express-session");
 
 // Directions for our routers
 var indexRouter = require('./routes/index-routes.js');
-var usersRouter = require('./routes/user_details-api-routes.js');
+var usersRouter = require('./routes/user_details-routes.js');
 // var authRouter = require('./routes/auth-routes.js');
 
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
