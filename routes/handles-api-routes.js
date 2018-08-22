@@ -32,17 +32,17 @@ module.exports = function (app) {
     });
 
     // POST route to add a new handle if it doesn't exist
-    app.post("/api/handles", function(req, res){
-        const newHandleName = req.body.handleName; 
+    app.post("/api/handles", function (req, res) {
+        const newHandleName = req.body.handleName;
         db.findOne({
             where: {
                 handleName: newHandleName
             }
-        }).then(function(dbHandle){
-            if (!dbHandle){
+        }).then(function (dbHandle) {
+            if (!dbHandle) {
                 db.Handles.create({
                     handleName: newHandleName
-                }).then(function(dbHandle){
+                }).then(function (dbHandle) {
                     res.json("New handle, " + dbHandle.handleName + " created. ");
                 });
             }
@@ -51,7 +51,7 @@ module.exports = function (app) {
             }
         });
     });
-    
+
     //PUT route to update tweets
     app.put("/api/handles", function (req, res) {
         db.Handles.update(
@@ -71,7 +71,7 @@ module.exports = function (app) {
         // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
         // So we're sending the user back the route to the members page because the redirect will happen on the front end
         // They won't get this or even be able to access this page if they aren't authed
-        res.json("/");
+        res.json("/user");
     });
 
     // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
