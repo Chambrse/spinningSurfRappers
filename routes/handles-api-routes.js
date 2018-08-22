@@ -30,6 +30,28 @@ module.exports = function (app) {
             res.json(dbHandle);
         });
     });
+
+    // POST route to add a new handle if it doesn't exist
+    app.post("/api/handles", function(req, res){
+        const newHandleName = req.body.handleName; 
+        db.findOne({
+            where: {
+                handleName: newHandleName
+            }
+        }).then(function(dbHandle){
+            if (!dbHandle){
+                db.Handles.create({
+                    handleName: newHandleName
+                }).then(function(dbHandle){
+                    res.json("New handle, " + dbHandle.handleName + " created. ");
+                });
+            }
+            else {
+                res.json(dbHandle.handleName + " already exists. ");
+            }
+        });
+    });
+    
     //PUT route to update tweets
     app.put("/api/handles", function (req, res) {
         db.Handles.update(
