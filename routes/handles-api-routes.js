@@ -14,14 +14,20 @@ module.exports = function (app) {
             res.json(dbHandles);
         });
     });
-    // GET route to retrieve a single tweet
-    app.get("/api/handles/:id", function (req, res) {
+
+    // This get call will retrieve a handles subscriptions, name and total number
+    app.get("/api/handles/:handleName", function (req, res) {
+        const handleName = req.params.handleName;
         db.Handles.findOne({
             where: {
-                id: req.params.id,
-            }
-        }).then(function (dbHandles) {
-            res.json(dbHandles);
+                handleName: handleName,
+            },
+            include: [{
+                model: db.UsersHandles,
+                include: db.UserDetails
+            }]
+        }).then(function (dbHandle) {
+            res.json(dbHandle);
         });
     });
     //PUT route to update tweets
@@ -145,9 +151,9 @@ module.exports = function (app) {
             res.json('USER UNSUBSRIBED TO ' + handleName);
         }
     }
-    
+
     // this call will retrieve all the current subscriptions the current user has
-    app.get("/api/user_subs/:userId", function(req, res){
+    app.get("/api/user_subs/:userId", function (req, res) {
         const userId = req.params.userId;
         // const userId = 1;
         db.UserDetails.findOne({
@@ -160,17 +166,20 @@ module.exports = function (app) {
             where: {
                 id: userId
             }
-        }).then(function (dbUser){
+        }).then(function (dbUser) {
             let ret = {
                 userName: dbUser.User_name,
                 subs: []
             };
-    
+
             dbUser.UsersHandles.forEach(userHandle => {
                 ret.subs.push(userHandle.Handle.handleName);
             })
             res.json(ret);
-            
+
         });
     });
+
+
+
 };
