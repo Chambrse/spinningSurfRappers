@@ -1,8 +1,20 @@
+// Get the api keys into env variables
+require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+<<<<<<< HEAD
+=======
+var passport = require('./config/passport.js');
+var session = require("express-session");
+
+// Directions for our routers
+var indexRouter = require('./routes/index-routes.js');
+var usersRouter = require('./routes/user_details-api-routes.js');
+// var authRouter = require('./routes/auth-routes.js');
+>>>>>>> e257429d054035301d59926ac33805f01fcbece8
 
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
 require("./tasks/getPopular")();
@@ -36,12 +48,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -52,7 +64,8 @@ app.use(function(err, req, res, next) {
 });
 
 //Start up the app and sequelize
-db.sequelize.sync().then(function () {
+// db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({}).then(function () {
   app.listen(PORT, function () {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
