@@ -127,7 +127,26 @@
 	<!-- HERO -->
 
 	<!-- FEATURED -->
-	<div class="uk-container">
+	
+{{#each items}}
+</div>
+	<div class="uk-child-width-expand@s uk-text-center uk-grid-match" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body"><img src={{poster_profile_image}} alt="">
+		<p>{{poster_handle}}</p>
+		<p>{{tweet_body}}</p>
+		
+		</div>
+    </div>
+    <div>
+        <div class="uk-card uk-card-default uk-card-body">{{#if emotions.document_tone.tones.length}}{{emotions.document_tone.tones.0.tone_name}} {{/if}}</div>
+    </div>
+    
+</div>
+	{{/each}}
+
+
+	{{!-- <div class="uk-container">
 		{{#each items}}
 		<h4 class="uk-heading-line uk-text-bold">
 			<span>Trending</span>
@@ -166,7 +185,7 @@
 				<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
 				{{/each}}
 			</div>
-		</div>
+		</div> --}}
 		<!-- /FEATURED -->
 
 		<!-- This is the modal for Log In -->
