@@ -5,8 +5,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-<<<<<<< HEAD
-=======
 var passport = require('./config/passport.js');
 var session = require("express-session");
 
@@ -14,13 +12,9 @@ var session = require("express-session");
 var indexRouter = require('./routes/index-routes.js');
 var usersRouter = require('./routes/user_details-api-routes.js');
 // var authRouter = require('./routes/auth-routes.js');
->>>>>>> e257429d054035301d59926ac33805f01fcbece8
 
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
 require("./tasks/getPopular")();
-
-var indexRouter = require('./routes/index-routes');
-//var usersRouter = require('./routes/user-details-routes');
 
 // Get the api keys into env variables
 require("dotenv").config();
