@@ -14,7 +14,7 @@ var usersRouter = require('./routes/user_details-api-routes.js');
 // var authRouter = require('./routes/auth-routes.js');
 
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
-require("./tasks/getPopular")();
+require("./tasks/getPopularIBM")();
 
 var indexRouter = require('./routes/index-routes');
 var app = express();
@@ -63,7 +63,7 @@ app.use(function (err, req, res, next) {
 
 //Start up the app and sequelize
 // db.sequelize.sync({ force: true }).then(function () {
-db.sequelize.sync({}).then(function () {
+db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);

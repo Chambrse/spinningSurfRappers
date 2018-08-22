@@ -9,9 +9,9 @@ $(document).ready(function () {
     // SIGNUP JQUERY
     // Getting references to our form and input
     var signUpForm = $("form.signup");
-    var emailInput = $("input.email-input");
-    var passwordInput = $("input.password-input");
-    var usernameInput = $("input.username-input");
+    var emailInput = $("input#sign-up-email");
+    var passwordInput = $("input#sign-up-password");
+    var usernameInput = $("input#sign-up-username");
     // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function (event) {
         event.preventDefault();
@@ -52,8 +52,8 @@ $(document).ready(function () {
     // LOGIN JQUERY
     // Getting references to our form and inputs
     var loginForm = $("form.login");
-    var emailLoginInput = $("input.login-email");
-    var passwordLoginInput = $("input.password-input");
+    var emailLoginInput = $("input#login-email");
+    var passwordLoginInput = $("input#login-password");
 
     // When the form is submitted, we validate there's an email and password entered
     loginForm.on("submit", function (event) {
