@@ -140,10 +140,10 @@
 							<div class="uk-card uk-card-default uk-card-body uk-card-small uk-flex uk-flex-middle uk-card-default uk-border-rounded">
 								<div class="uk-grid uk-grid-medium uk-flex uk-flex-middle" data-uk-grid>
 									<div class="uk-width-1-3@s uk-width-2-5@m uk-height-1-1">
-										<img src={ {poster_profile_image}} alt="">
+										<img src={{poster_profile_image}} alt="">
 									</div>
 									<div class="uk-width-2-3@s uk-width-3-5@m">
-										<span class="uk-label uk-label-warning" style="font-size: 0.75rem"> Current Mood: {{dominant_emotion}}</span>
+										<span class="uk-label uk-label-warning" style="font-size: 0.75rem"> Current Mood:{{#if emotions.document_tone.tones.length}}{{emotions.document_tone.tones.0.tone_name}} {{/if}} </span>
 										<h3 class="uk-card-title uk-margin-small-top uk-margin-remove-bottom">
 											<a class="uk-link-reset" href="#">{{poster_handle}}</a>
 										</h3>
