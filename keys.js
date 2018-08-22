@@ -14,3 +14,8 @@ exports.google = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET
 }
+
+exports.IBM = {
+    IBMUsername: process.env.IBM_USERNAME,
+    IBMPassword: process.env.IBM_PASSWORD
+}
