@@ -8,6 +8,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING(1080),
             allowNull: false,
         },
+        poster_name: {
+            type: DataTypes.STRING,
+            allownull: true
+        },
         poster_handle: {
             type: DataTypes.STRING,
             allownull: false
@@ -25,12 +29,12 @@ module.exports = function (sequelize, DataTypes) {
             allownull: false
         }, 
         emotions: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(1080),
             allownull: false
         },
         dominant_emotion: {
             type: DataTypes.STRING,
-            allownull: false
+            allownull: true
         }
     });
 
