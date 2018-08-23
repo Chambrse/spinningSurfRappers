@@ -21,7 +21,7 @@ let db = require("../models");
 var schedule = require('node-schedule');
 
 // Run once 
-let startupCall = true;
+let startupCall = false;
 
 let doIt = function () {
 

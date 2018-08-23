@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Du@F!dgg",
+    "password": "adrinal drift",
     "database": "tweet_emotion_tracker",
     "host": "127.0.0.1",
     "dialect": "mysql",
