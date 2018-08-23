@@ -41,6 +41,8 @@ app.use(passport.session());
 
 // Routes
 require('./routes/auth-routes.js')(app);
+require('./routes/user_details-api-routes.js')(app);
+require('./routes/passport-api-routes.js')(app);
 require('./routes/handles-api-routes.js')(app);
 
 app.use('/', indexRouter);
