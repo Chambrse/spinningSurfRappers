@@ -2,7 +2,7 @@ var express = require('express');
 var db = require("../models");
 var router = express.Router();
 var path = require("path");
-
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 const keys = require('../keys.js');
 
 //twitter
@@ -24,7 +24,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
 });
 
 /* GET user page */
-router.get('/user', function (req, res, next) {
+router.get('/user', isAuthenticated,function (req, res, next) {
   res.render('user');
 });
 
