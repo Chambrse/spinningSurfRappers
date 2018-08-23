@@ -2,7 +2,24 @@
 $(document).ready(function () {
     $.get("/api/user_data").then(function (data) {
         $(".user-name").text("Welcome back " + data.email);
-        console.log(data);
+    });
+
+    $("#searchbar").on("submit", function() {
+        console.log($("#searchbar").val());
+        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
+
+        });
+    });
+
+    $("form.searchbar").on("submit", function(e) {
+        e.preventDefault();
+        console.log($("#searchbar").val().trim());
+        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
+            // console.log(data);
+            var bodyContent = data;
+            $('body').html(bodyContent);
+        });
+
     });
 
 
