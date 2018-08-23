@@ -131,6 +131,7 @@
     <div>
         <div class="uk-card uk-text-danger uk-text-center uk-card-hover uk-card-body">
 		<img src={{poster_profile_image}} alt="">
+		<h3>{{poster_name}}</h3>
 		<p>{{poster_handle}}</p>
 		<p>{{tweet_body}}</p>
 		
@@ -138,8 +139,8 @@
     </div>
     <div>
         <div class="uk-card uk-text-danger uk-text-center uk-card-hover uk-card-body">
-			{{#if emotions.document_tone.tones.length}}{{emotions.document_tone.tones.0.tone_name}} {{/if}}
-			{{#if emotions.document_tone.tones.length}}<img src="images/{{emotions.document_tone.tones.0.tone_name}}.jpg"> {{/if}}
+			
+			{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png" style="width:100px;height:100px;">{{/each}} {{/if}} 
 		</div>
     </div>
     
@@ -158,7 +159,7 @@
 		<!-- /FEATURED -->
 
 		<!-- This is the modal for Log In -->
-		<div id="my-id" uk-modal>
+		<div id="my-id" uk-modal>''
 			<div class="uk-modal-dialog uk-modal-body">
 				<h2 class="uk-modal-title"> Log In to your account</h2>
 				<form class="uk-form-horizontal uk-margin-large login">
