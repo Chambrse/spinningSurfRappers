@@ -1,4 +1,3 @@
-var users = require('../models/userDetails.js');
 module.exports = function (sequelize, DataTypes) {
     var Handles = sequelize.define("Handles", {
         //for Tweets
