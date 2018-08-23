@@ -34,13 +34,14 @@ router.get('/about', function (req, res, next) {
 });
 
 
-// Test the sequelize mysql connection. Should display json of the test database items.
 router.get('/', function (req, res, next) {
   db.popularTweets.findAll({order: [['tweet_created_at', 'DESC']]}).then(function (data) {
 
     data.forEach(element => {
       element.emotions = JSON.parse(element.emotions);
     });
+
+    // res.json(data);
 
     res.render("index", { items: data });
   });
@@ -70,13 +71,10 @@ router.post('/signup', function (req, res, next) {
       //not sure what to do if they get an error
     })
 
-})
-
-// log in post request
+});
 
 
-
-// Indico sentiment analysis by twitter handle.
+/* // Indico sentiment analysis by twitter handle.
 router.get('/sentiment/:handle', function (req, res, next) {
   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
@@ -125,6 +123,7 @@ router.get('/sentiment/:handle', function (req, res, next) {
   });
 
 });
+ */
 
 // ibm watson tone analyzer by handle
 router.get('/ibm/:handle', function (req, res, next) {
@@ -163,7 +162,7 @@ router.get('/ibm/:handle', function (req, res, next) {
           });
 
           if (numberOfCalls === tweets.length) {
-            res.json(analysisArray);
+            res.render("index", analysisArray);
           };
 
         };

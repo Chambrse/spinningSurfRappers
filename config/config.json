@@ -2,9 +2,10 @@
   "development": {
     "username": "root",
     "password": "adrinal drift",
-    "database": "Tweet_emotion_tracker",
+    "database": "tweet_emotion_tracker",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "operatorsAliases": false
   },
   "test": {
     "username": "root",
