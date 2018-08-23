@@ -42,6 +42,7 @@ router.get('/', function (req, res, next) {
     });
 
     res.render("index", { items: data });
+    // res.json(data);
   });
 });
 
@@ -130,6 +131,8 @@ router.get('/ibm/:handle', function (req, res, next) {
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
     console.log(response);
     console.log(error);
+
+    // res.json(tweets);
 
     let analysisArray = [];
     let numberOfCalls = 0;
