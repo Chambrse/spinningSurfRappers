@@ -1,7 +1,7 @@
 <!--CSS-->
 <style>
 	body {
-		background: url(https://images.pexels.com/photos/1130643/pexels-photo-1130643.jpeg?auto=compress&cs=tinysrgb&h=350) no-repeat center center fixed;
+		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
 	}
 	nav.nav-scroll {
@@ -119,22 +119,24 @@
 
 	<!-- HERO -->
 
-	<!-- FEATURED -->
-	
+
+	<!-- Trending -->
+	<br>
+	<h1 class="uk-text-center uk-text-contrast">Trending</h1>
 {{#each items}}
 </div>
 	<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
     <div>
-        <div class="uk-card uk-text-danger uk-text-center uk-card-hover uk-card-body">
-		<img src={{poster_profile_image}} alt="">
-		<h3>{{poster_name}}</h3>
+        <div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-hover uk-card-body">
+		<img src={{poster_profile_image}} alt="" style="border-radius: 50%;height:65px;">
+		<p>{{poster_name}}</p>
 		<p>{{poster_handle}}</p>
 		<p>{{tweet_body}}</p>
 		
 		</div>
     </div>
     <div>
-        <div class="uk-card uk-text-danger uk-text-center uk-card-hover uk-card-body">
+        <div class="uk-card uk-text-contrast uk-text-center uk-card-hover uk-card-body">
 			
 			{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png" style="width:100px;height:100px;">{{/each}} {{/if}} 
 		</div>
@@ -142,6 +144,7 @@
     
 </div>
 	{{/each}}
+<!-- /Trending -->
 
 		<h2 id="aboutus" class="uk-text-center">About Us</h2>
 		<div class="w3-content w3-section">
@@ -176,10 +179,19 @@ function carousel() {
 							feeling. We created this website to give you the ability to go beyond the superficial words and get insights on how
 							your friends and favorites celebrities really fell when they are on twitter..</p>
 
-		<!-- /FEATURED -->
+<!-- /About Us -->
+	
+	<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is
+						over a third of the world’s population is using some form of social media, some of the notable users include the President
+						of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage
+						of Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are feeling.
+						We created this website to give you the ability to go beyond the superficial words and get insights on how your friends
+						and favorites celebrities really fell when they are on twitter.</p>
+		<!-- /Trending -->
 
 		<!-- This is the modal for Log In -->
-		<div id="my-id" uk-modal>''
+		
+		<div id="my-id" uk-modal>
 			<div class="uk-modal-dialog uk-modal-body">
 				<h2 class="uk-modal-title"> Log In to your account</h2>
 				<form class="uk-form-horizontal uk-margin-large login">

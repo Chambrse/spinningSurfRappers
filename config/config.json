@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "adrinal drift",
-    "database": "tweet_emotion_tracker",
+    "password": "root",
+    "database": "database_development",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
