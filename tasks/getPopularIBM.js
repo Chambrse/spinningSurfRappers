@@ -20,8 +20,7 @@ let db = require("../models");
 // So we can set this function to run every 12 hours
 var schedule = require('node-schedule');
 
-// Run once 
-let startupCall = false;
+let startupCall = process.env.GET_TWEETS_ON_START || false;
 
 let doIt = function () {
 
@@ -37,8 +36,8 @@ let doIt = function () {
             + "from:theellenshow+OR+"
             + "from:jtimberlake+OR+"
             + "from:kimkardashian+OR+"
-            + "from:arianagrande+OR+"
-            + "from:ddlovato+OR+"
+/*             + "from:arianagrande+OR+"
+ */            + "from:ddlovato+OR+"
             + "from:selenagomez+OR+"
             + "from:britneyspears+OR+"
             + "from:cnnbrk+OR+"

@@ -41,9 +41,8 @@ router.get('/', function (req, res, next) {
       element.emotions = JSON.parse(element.emotions);
     });
 
-    // res.json(data);
-
     res.render("index", { items: data });
+    // res.json(data);
   });
 });
 
@@ -128,8 +127,12 @@ router.get('/sentiment/:handle', function (req, res, next) {
 // ibm watson tone analyzer by handle
 router.get('/ibm/:handle', function (req, res, next) {
 
-  var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
+  var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 20, include_rts: false };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
+    console.log(response);
+    console.log(error);
+
+    // res.json(tweets);
 
     let analysisArray = [];
     let numberOfCalls = 0;
@@ -162,7 +165,7 @@ router.get('/ibm/:handle', function (req, res, next) {
           });
 
           if (numberOfCalls === tweets.length) {
-            res.render("index", analysisArray);
+            res.render("index", { items: analysisArray });
           };
 
         };
