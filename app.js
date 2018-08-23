@@ -22,7 +22,7 @@ require("dotenv").config();
 var app = express();
 
 //d3 
-var d3 = require('d3');
+//var d3 = require('d3');
 
 // Sequelize db
 var db = require("./models");
