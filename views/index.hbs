@@ -94,7 +94,7 @@
 					<a href="https://shanechambry.com">Shane Chambry</a>
 				</li>
 				<li>
-					<a href="#target" uk-scroll>About Us</a>
+					<a href="#aboutus">About Us</a>
 				</li>
 			</ul>
 		</nav>
@@ -138,13 +138,22 @@
     </div>
     <div>
         <div class="uk-card uk-text-danger uk-text-center uk-card-hover uk-card-body">
-			{{#if emotions.document_tone.tones.length}}{{emotions.document_tone.tones.0.tone_name}} {{/if}}</div>
+			{{#if emotions.document_tone.tones.length}}{{emotions.document_tone.tones.0.tone_name}} {{/if}}
+			{{#if emotions.document_tone.tones.length}}<img src="images/{{emotions.document_tone.tones.0.tone_name}}.jpg"> {{/if}}
+		</div>
     </div>
     
 </div>
 	{{/each}}
 
-
+		<h2 id="aboutus">About Us</h2>
+		<a href="#target">Events</a>
+		<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
+							a third of the world’s population is using some form of social media, some of the notable users include the President
+							of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage
+							of Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are
+							feeling. We created this website to give you the ability to go beyond the superficial words and get insights on how
+							your friends and favorites celebrities really fell when they are on twitter..</p>
 
 		<!-- /FEATURED -->
 
@@ -189,6 +198,7 @@
 
 
 	</div>
+	
 
 	<!-- This is the modal for Sing up  -->
 	<div id="my-id1" uk-modal>
@@ -221,10 +231,3 @@
 
 
 		</div>
-		<a href="#target">Events</a>
-		<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
-							a third of the world’s population is using some form of social media, some of the notable users include the President
-							of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage
-							of Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are
-							feeling. We created this website to give you the ability to go beyond the superficial words and get insights on how
-							your friends and favorites celebrities really fell when they are on twitter..</p>
