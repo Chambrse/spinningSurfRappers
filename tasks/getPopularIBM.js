@@ -22,11 +22,8 @@ var schedule = require('node-schedule');
 
 let startupCall =/*  process.env.GET_TWEETS_ON_START ||  */false;
 
-console.log(startupCall);
 
 let doIt = function () {
-
-    console.log("yet another test", startupCall);
 
     db.popularTweets.drop();
 
@@ -93,11 +90,7 @@ let doIt = function () {
 
 module.exports = function getPopular() {
 
-    console.log("askdj", startupCall);
-
     if (startupCall) {
-
-        console.log("is it running from here");
 
         doIt();
         startupCall = false;
@@ -106,7 +99,6 @@ module.exports = function getPopular() {
 
         var j = schedule.scheduleJob('0 0 0,12 * *', function () {
 
-            console.log("anothertest");
             doIt();
         });
 
