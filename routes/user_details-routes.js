@@ -31,7 +31,7 @@ module.exports = function (app) {
   // API call to handle user's subscribing to certain handles
   // User ID is sent by front end via req.body.id
   // and handle is sent via api post call
-  app.post("/user/:handle", function (req, res) {
+  app.post("/api/user/subscribeto/:handle", function (req, res) {
     const handleName = req.params.handle;
     const userId = req.body.id;
 
@@ -46,12 +46,14 @@ module.exports = function (app) {
         // If there is no handle in our database, then create one.
         db.Handles.create({
           handleName: handleName
+        }).then((dbUser) => {
+          // Since the handle didn't exist before now, we don't need to check if the 
+          // link is in UsersHandles
+          toggleUserSubscription(false, userId, handleName, res);
         });
-        // Since the handle didn't exist before now, we don't need to check if the 
-        // link is in UsersHandles
-        toggleUserSubscription(false, userId, handleName, res);
       }
       else {
+        console.log(userId);
         db.UsersHandles.findOne({
           where: {
             UserDetailId: userId,
@@ -104,7 +106,7 @@ module.exports = function (app) {
     });
   });
 
-  app.post('/api/bitch', function (req, res) {
+  app.post('/api/user/favorite', function (req, res) {
 
     const tweetId = req.body.tweetId;
     const tweetContent = req.body.tweet;
@@ -132,12 +134,12 @@ module.exports = function (app) {
             FavoritedTweetId: tweetId
           }
         }).then(function (dbUserTweet) {
-          toggleUserFavorite(true, userId, dbTweet.id, res);
+          toggleUserFavorite(dbUserTweet, userId, dbTweet.id, res);
         });
       }
     });
 
-    // help function
+    // helper function
 
     function toggleUserFavorite(linkExistance, userId, tweetId, res) {
       if (!linkExistance) {
@@ -150,8 +152,10 @@ module.exports = function (app) {
       }
       else {
         db.UsersFavoritedTweets.destroy({
-          UserDetailId: userId,
-          FavoritedTweetId: tweetId
+          where: {
+            UserDetailId: userId,
+            FavoritedTweetId: tweetId
+          }
         }).then(function () {
           res.json("USER UN-LIKED " + tweetId);
         });
