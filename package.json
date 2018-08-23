@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
+    "d3": "^5.5.0",
     "debug": "~2.6.9",
     "dot-env": "0.0.1",
     "dotenv": "^6.0.0",
