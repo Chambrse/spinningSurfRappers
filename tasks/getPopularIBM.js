@@ -26,84 +26,58 @@ let doIt = function () {
 
     db.popularTweets.drop();
 
-    // Get popular tweets from the last week from the twitter accounts with the most followers
-    client.get('search/tweets', {
-        q: "from:katyperry+OR+"
-            + "from:barackobama+OR+"
-            + "from:rihanna+OR+"
-            + "from:taylorswift13+OR+"
-            + "from:ladygaga+OR+"
-            + "from:theellenshow+OR+"
-            + "from:jtimberlake+OR+"
-            + "from:kimkardashian+OR+"
-/*             + "from:arianagrande+OR+"
- */            + "from:ddlovato+OR+"
-            + "from:selenagomez+OR+"
-            + "from:britneyspears+OR+"
-            + "from:cnnbrk+OR+"
-            + "from:realdonaldtrump+OR+"
-            + "from:shakira+OR+"
-            + "from:jimmyfallon+OR+"
-            + "from:billgates+OR+"
-            + "from:jlo+OR+"
-            + "from:narendramodi+OR+"
-            + "from:brunomars+OR+"
-            + "from:nytimes+OR+"
-            /*     + "from:oprah+OR+"
-                + "from:kingjames+OR"
-                + "from:neymarjr+OR+"
-                + "from:mileycyrus+OR+"
-                + "from:niallofficial+OR+"
-                + "from:drake+OR+"
-                + "from:iamsrk+OR+"
-                + "from:kevinhart4real+OR+"
-                + "from:liltunechi+OR+"
-                + "from:wizkhalifa+OR+" */
-            + "from:cristiano-filter:retweets",
-        result_type: "popular", tweet_mode: 'extended', count: 15
-    }, function (error, tweets, response) {
+    let handleArray = ["katyperry", "barackobama", "rihanna", "justinbeiber", "taylorswift13", "ladygaga", "theellenshow", "cristiano", "jtimberlake", "kinkardashian", "ddlovato", "selenagomez", "britneyspears", "realdonaldtrump", "shakira", "jimmyfallon", "billgates", "jlo", "brunomars", "oprah", "kingjames", "mileycyrus", "drake", "kevinhart4real", "wizkhalifa", "chrisbrown", "emmawatson", "conanobrien", "adele", "zaynmalik", "danieltosh", "potus"];
+    
+    let analysisArray = [];
+    let numberOfCalls = 0;
+    let callsExpected = 0;
+    handleArray.forEach(function (element, index) {
 
-        if (error) throw error;
+        // Get popular tweets from the last week from the twitter accounts with the most followers
+        client.get('search/tweets', {
+            q: "from:" + element/*  + "-filter:retweets" */, result_type: "mixed", tweet_mode: 'extended', count: 2
+        }, function (error, tweets, response) {
 
-        let analysisArray = [];
-        let numberOfCalls = 0;
+            if (error) throw error;
 
-        console.log("number of tweets returned", tweets.statuses.length);
+            callsExpected += tweets.statuses.length;
 
-        tweets.statuses.forEach(element => {
+            tweets.statuses.forEach(element => {
 
-            let text = element.full_text;
+                let text = element.full_text;
 
-            var toneParams = {
-                'tone_input': { 'text': text },
-                'content_type': 'application/json'
-            };
+                var toneParams = {
+                    'tone_input': { 'text': text },
+                    'content_type': 'application/json'
+                };
 
-            toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
+                toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
 
-                if (error) {
-                    console.log(error);
-                } else {
-                    numberOfCalls++;
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        numberOfCalls++;
 
-                    analysisArray.push({
-                        tweet_created_at: element.created_at,
-                        tweet_body: element.full_text,
-                        poster_name: element.user.name,
-                        poster_handle: element.user.screen_name,
-                        poster_profile_image: element.user.profile_image_url,
-                        retweets: element.retweet_count,
-                        favorites: element.favorite_count,
-                        emotions: JSON.stringify(toneAnalysis)
-                    });
-
-                    if (numberOfCalls === tweets.statuses.length) {
-                        db.popularTweets.bulkCreate(analysisArray).then(function (data) {
-                            console.log("Popular tweets have been updated!");
+                        analysisArray.push({
+                            tweet_created_at: element.created_at,
+                            tweet_body: element.full_text,
+                            poster_name: element.user.name,
+                            poster_handle: element.user.screen_name,
+                            poster_profile_image: element.user.profile_image_url,
+                            retweets: element.retweet_count,
+                            favorites: element.favorite_count,
+                            emotions: JSON.stringify(toneAnalysis)
                         });
+
+                        if (numberOfCalls === callsExpected) {
+                            db.popularTweets.bulkCreate(analysisArray).then(function (data) {
+                                console.log("Popular tweets have been updated!");
+                            });
+                        };
+
                     };
 
-                };
+                });
 
             });
 
@@ -112,7 +86,6 @@ let doIt = function () {
     });
 
 };
-
 module.exports = function getPopular() {
 
     if (startupCall) {
