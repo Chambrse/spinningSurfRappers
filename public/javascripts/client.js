@@ -1,6 +1,5 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
-<<<<<<< HEAD
         $(".user-name").text("Welcome back " + data.email);
     });
 
@@ -20,12 +19,10 @@ function getUserData(cb) {
             $('body').html(bodyContent);
         });
 
-=======
         // console.log(data);
         cb(data)
         // return data;
         // ^^ wont work idk why
->>>>>>> 9fc2adbd57efd0c84affc897d6d7cbafa3907947
     });
 };
 
