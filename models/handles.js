@@ -11,10 +11,16 @@ module.exports = function (sequelize, DataTypes) {
             unique: true
         }
     });
+    Handles.associate = function (models) {
+        Handles.belongsTo(models.UserDetails, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
     
     Handles.associate = function(models){
         Handles.hasMany(models.UsersHandles);
     }
-    
+} 
     return Handles;
-};
+}
