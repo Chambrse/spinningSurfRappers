@@ -1,9 +1,37 @@
+function getUserData(cb) {
+    $.get("/api/user_data").then(function (data) {
+        // console.log(data);
+        cb(data)
+        // return data;
+        // ^^ wont work idk why
+    });
+};
+
+function subscribeTo(thisUser, thisHandleName) {
+    $.post("/api/user/subscribeto/" + thisHandleName, { id: thisUser.id })
+        .then(function (data) {
+            console.log(data);
+        });
+};
+
+function favorite(thisUser, thisTweetId, tweetContents) {
+    $.post("/api/user/favorite",
+        {
+            id: thisUser.id,
+            tweetId: thisTweetId,
+            tweet: tweetContents
+        })
+        .then(function (data) {
+            console.log(data);
+        });
+};
+
+function logOut(){
+    $.get("/logout");
+}
 
 $(document).ready(function () {
-    $.get("/api/user_data").then(function (data) {
-        $(".user-name").text("Welcome back " + data.email);
-        console.log(data);
-    });
+
 
 
     // SIGNUP JQUERY
@@ -87,22 +115,12 @@ $(document).ready(function () {
         });
     }
 
+    // SUBSCRIBE JQUERY
+
+
+    // FAVORITE JQUERY
+
+
     // On Startup
     $(".error-text").hide();
 });
-//for about us
-
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 10000); // Change image every 10 seconds
-}
