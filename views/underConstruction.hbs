@@ -5,6 +5,13 @@
             <img src="/images/surfer.jpg"/>
             <h2>Under Construction</h2>
             <a href="/test">Show me the test JSON</a>
+            {{#each items}}
+            <p> {{tweet}} </p>
+             {{#if anger}} 
+             <p>Anger emotioncon goes here</p>
+             {{/if}}
+            {{/each}}
+
         </div>
     </div>
 </div>

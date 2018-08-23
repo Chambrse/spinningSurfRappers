@@ -1,2 +1,244 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!--CSS-->
+<style>
+	body {
+		background: url(https://images.pexels.com/photos/1130643/pexels-photo-1130643.jpeg?auto=compress&cs=tinysrgb&h=350) no-repeat center center fixed;
+		background-size: cover;
+	}
+
+	nav.nav-scroll {
+		position: relative;
+		z-index: 2;
+		height: 2rem;
+		box-sizing: border-box;
+		overflow-y: hidden;
+		padding: 1rem;
+		border-top: 1px solid rgba(207, 36, 36, 0.075);
+	}
+
+	nav.nav-scroll>ul {
+		overflow-x: auto;
+		text-align: center;
+		white-space: nowrap;
+		-webkit-overflow-scrolling: touch;
+		padding-bottom: 1rem;
+	}
+
+	nav.nav-scroll>ul>li>a {
+		font-weight: 500;
+	}
+
+	.news-slide>li>.uk-card {
+		box-shadow: none;
+		border: 1px solid rgba(0, 0, 0, 0.075);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 700;
+	}
+
+	.uk-logo>img {
+		height: 58px;
+	}
+
+	#header.uk-sticky-below {
+		box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.07);
+	}
+</style>
+<!--/CSS-->
+
+<!--HEADER-->
+<div class="uk-offcanvas-content">
+
+	<header id="header" style="background-color: clear;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
+		<div class="uk-container">
+			<nav id="navbar" data-uk-navbar="mode: click;">
+				<div class="uk-navbar-left nav-overlay uk-visible@m">
+					<ul class="uk-navbar-nav">
+						<li>
+							<a uk-toggle="target: #my-id" title="Subscribe">Log In</a>
+						</li>
+						<li>
+							<a uk-toggle="target: #my-id1" title="Sign Up">Sign Up</a>
+						</li>
+					</ul>
+				</div>
+				<div class="uk-navbar-center nav-overlay">
+					<h2>Welcome to Twitter Motions</h2>
+
+			</nav>
+			</div>
+	</header>
+
+	<!-- NAVIGATION -->
+	<div class="uk-container">
+		<nav class="nav-scroll">
+			<ul class="uk-subnav uk-flex uk-flex-between uk-flex-nowrap">
+				<li class="uk-active">
+					<a href="#">The Team</a>
+				</li>
+				<li>
+					<a href="https://aishucr.github.io/New_profile/">Gayathri Chandra Sekar</a>
+				</li>
+				<li>
+					<a href="https://jmatt21.github.io/My-Portfolio/">Matthew Bertrandt</a>
+				</li>
+				<li>
+					<a href="https://renatawattier.github.io/portfolio/">Renata Wattier</a>
+				</li>
+				<li>
+					<a href="https://shanechambry.com">Shane Chambry</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<!-- /NAVIGATION -->
+
+	<!-- HERO -->
+	<section class="uk-section uk-section-small">
+		<div class="uk-container">
+			<div class="uk-height-large uk-cover-container uk-border-rounded">
+				<img src="https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Alt img"
+				 data-uk-cover>
+				<div class="uk-overlay uk-overlay-primary uk-position-cover uk-flex uk-flex-center uk-flex-middle uk-light uk-text-center">
+					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
+						<span style="letter-spacing: 0.5em; font-size: 0.725rem">About Us</span>
+						{{!--
+						<h1 class="uk-margin-top uk-margin-small-bottom uk-margin-remove-adjacent">This is a featured blog post</h1> --}}
+						<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
+							a third of the world’s population is using some form of social media, some of the notable users include the President
+							of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage
+							of Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are
+							feeling. We created this website to give you the ability to go beyond the superficial words and get insights on how
+							your friends and favorites celebrities really fell when they are on twitter..</p>
+						{{!--
+						<a href="#" class="uk-button uk-button-default uk-margin-top">GO TO ARTICLE</a> --}}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- HERO -->
+
+	<!-- FEATURED -->
+	<div class="uk-container">
+		{{#each items}}
+		<h4 class="uk-heading-line uk-text-bold">
+			<span>Trending</span>
+		</h4>
+		<div data-uk-slider="velocity: 5">
+			<div class="uk-position-relative">
+				<div class="uk-slider-container">
+					<ul class="uk-slider-items uk-child-width-1-2@m uk-grid uk-grid-medium news-slide">
+						<li>
+							<div class="uk-card uk-card-default uk-card-body uk-card-small uk-flex uk-flex-middle uk-card-default uk-border-rounded">
+								<div class="uk-grid uk-grid-medium uk-flex uk-flex-middle" data-uk-grid>
+									<div class="uk-width-1-3@s uk-width-2-5@m uk-height-1-1">
+										<img src={ {poster_profile_image}} alt="">
+									</div>
+									<div class="uk-width-2-3@s uk-width-3-5@m">
+										<span class="uk-label uk-label-warning" style="font-size: 0.75rem"> Current Mood: {{dominant_emotion}}</span>
+										<h3 class="uk-card-title uk-margin-small-top uk-margin-remove-bottom">
+											<a class="uk-link-reset" href="#">{{poster_handle}}</a>
+										</h3>
+
+										<p class="uk-margin-small">{{tweet_body}}</p>
+									</div>
+								</div>
+							</div>
+						</li>
+
+						<div class="uk-hidden@l uk-light">
+							<a class="uk-position-center-left uk-position-small" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+							<a class="uk-position-center-right uk-position-small" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a>
+						</div>
+						<div class="uk-visible@l">
+							<a class="uk-position-center-left-out uk-position-small" href="#" data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+							<a class="uk-position-center-right-out uk-position-small" href="#" data-uk-slidenav-next data-uk-slider-item="next"></a>
+						</div>
+				</div>
+				<ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+				{{/each}}
+			</div>
+		</div>
+		<!-- /FEATURED -->
+
+		<!-- This is the modal for Log In -->
+		<div id="my-id" uk-modal>
+			<div class="uk-modal-dialog uk-modal-body">
+				<h2 class="uk-modal-title"> Log In to your account</h2>
+				<form class="uk-form-horizontal uk-margin-large login">
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">e-mail</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="login-email" name="email" type="email" required placeholder="Please enter your email">
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-select">Password</label>
+						<div class="uk-form-controls">
+
+							<input class="uk-input" id="login-password" required type="password" placeholder="your password">
+						</div>
+
+
+						<div class="uk-margin">
+							<input type="submit" value="log in">
+
+							<p class='error-text'> Incorrect Email/Password</p>
+				</form>
+
+
+				</select>
+				</div>
+				</div>
+
+			</div>
+
+			</form>
+
+		</div>
+	</div>
+
+
+	</div>
+
+	<!-- This is the modal for Sing up  -->
+	<div id="my-id1" uk-modal>
+		<div class="uk-modal-dialog uk-modal-body">
+			<h2 class="uk-modal-title"> Create a free account</h2>
+
+			<form class="uk-form-horizontal uk-margin-large signup">
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">e-mail</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="sign-up-email" name="email" type="email" required placeholder="Please enter your email">
+					</div>
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-text">Username</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" id="sign-up-username" type="text" required placeholder="please enter your Name">
+					</div>
+				</div>
+				<div class="uk-margin">
+					<label class="uk-form-label" for="form-horizontal-select">Password</label>
+					<div class="uk-form-controls">
+
+						<input class="uk-input" id="sign-up-password" type="password" required placeholder="your password">
+
+						</select>
+					</div>
+				</div>
+				<input type="submit" value="sign up">
+
+
+		</div>
