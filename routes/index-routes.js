@@ -126,7 +126,6 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/', function (req, res, next) {
-
   if (req.user) {
     user = {
       username: req.user.User_name,
@@ -137,8 +136,6 @@ router.get('/', function (req, res, next) {
   } else {
     user = {}
   }
-
-
   db.popularTweets.findAll({ order: [['tweet_created_at', 'DESC']] }).then(function (data) {
 
     data.forEach(element => {
@@ -236,8 +233,6 @@ router.get('/ibm/:handle', function (req, res, next) {
 
   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 20, include_rts: false };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
-    console.log(response);
-    console.log(error);
 
     // res.json(tweets);
 

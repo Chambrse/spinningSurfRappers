@@ -30,5 +30,20 @@ $(document).ready(function () {
             favorite(thisUser, thisTweetId, tweetContents)
         });
 
+        $.get('/api/user_subs/' + thisUser.id).then(function (data) {
+            console.log(data);
+
+
+/*         $.get('/api/user_subs/' + thisUser.id).then(function (data) {
+
+            var bodyContent = data;
+            $('body').html(bodyContent);
+
+        }); */
     });
+
+
+
+});
+
 });
