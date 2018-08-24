@@ -29,6 +29,9 @@ module.exports = function (sequelize, DataTypes) {
     UserDetails.hasMany(models.UsersHandles, {
       onDelete: "CASCADE"
     });
+    UserDetails.hasMany(models.UsersFavoritedTweets, {
+      onDelete: "CASCADE"
+    });
   }
   return UserDetails;
 };

@@ -4,6 +4,7 @@
 		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
 	}
+
 	nav.nav-scroll {
 		position: relative;
 		z-index: 2;
@@ -13,6 +14,7 @@
 		padding: 1rem;
 		border-top: 1px solid rgba(207, 36, 36, 0.075);
 	}
+
 	nav.nav-scroll>ul {
 		overflow-x: auto;
 		text-align: center;
@@ -20,13 +22,16 @@
 		-webkit-overflow-scrolling: touch;
 		padding-bottom: 1rem;
 	}
+
 	nav.nav-scroll>ul>li>a {
 		font-weight: 500;
 	}
+
 	.news-slide>li>.uk-card {
 		box-shadow: none;
 		border: 1px solid rgba(0, 0, 0, 0.075);
 	}
+
 	h1,
 	h2,
 	h3,
@@ -35,13 +40,16 @@
 	h6 {
 		font-weight: 700;
 	}
+
 	.uk-logo>img {
 		height: 58px;
 	}
+
 	#header.uk-sticky-below {
 		box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.07);
 	}
-	a{
+
+	a {
 		color: white;
 	}
 </style>
@@ -54,7 +62,7 @@
 		<div class="uk-container">
 			<nav id="navbar" data-uk-navbar="mode: click;">
 				<div class="uk-navbar-left nav-overlay uk-visible@m">
-					<ul class="uk-navbar-nav">
+					<ul id="top-left-buttons" class="uk-navbar-nav">
 						<li>
 							<a uk-toggle="target: #my-id" title="Subscribe">Log In</a>
 						</li>
@@ -97,35 +105,38 @@
 	</div>
 	<!-- /NAVIGATION -->
 
-<!-- HERO -->
-						<section class="uk-section uk-section-small">
-							<div class="uk-container">
-								<div class="uk-height-large uk-cover-container uk-border-rounded">
-									<img src="https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Alt img"
-									 data-uk-cover>
-									<div class="uk-overlay uk-overlay-primary uk-position-cover uk-flex uk-flex-center uk-flex-middle uk-light uk-text-center">
-										<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
-										</div>
-										<div class="uk-width-expand">
-											<form action="cards.html">
-												<div class="uk-inline uk-width-1-1">
-													<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
-													<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-
 	<!-- HERO -->
+<<<<<<< HEAD
 	{{!-- <style>
 		.tweet:hover{
 			background-color: slategray;
 			color: black;
 		}
 	</style> --}}
+=======
+	<section class="uk-section uk-section-small">
+		<div class="uk-container">
+			<div class="uk-height-large uk-cover-container uk-border-rounded">
+				<img src="https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Alt img"
+				 data-uk-cover>
+				<div class="uk-overlay uk-overlay-primary uk-position-cover uk-flex uk-flex-center uk-flex-middle uk-light uk-text-center">
+					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
+					</div>
+					<div class="uk-width-expand">
+						<form action="cards.html">
+							<div class="uk-inline uk-width-1-1">
+								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
+								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+>>>>>>> e08f2814689a979b0e5e9befaa8f5489a9cd7868
 
+			<!-- HERO -->
 
+<<<<<<< HEAD
 	<!-- Trending -->
 	<br>
 	<h1 class="uk-text-center uk-text-contrast">Trending</h1>
@@ -147,12 +158,38 @@
         <div class="uk-card uk-text-contrast uk-text-center uk-card-hover uk-card-body">
 			
 			{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png" style="width:100px;height:100px;">{{/each}} {{/if}} 
+=======
+
+			<!-- Trending -->
+			<br>
+			<h1 class="uk-text-center uk-text-contrast">Trending</h1>
+			{{#each items}}
 		</div>
-    </div>
-    
-</div>
-	{{/each}}
-<!-- /Trending -->
+		<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
+			<div>
+				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-hover uk-card-body">
+					<img src={{poster_profile_image}} alt="{{poster_handle}}'s twitter avatar" style="border-radius: 50%;height:65px;">
+					<p>{{poster_name}}</p>
+					<p>{{poster_handle}}</p>
+					<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
+					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>Subscribe!</button>
+					<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite this
+						tweet!
+					</button>
+				</div>
+			</div>
+			<div>
+				<div class="uk-card uk-text-contrast uk-text-center uk-card-hover uk-card-body">
+
+					{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png"
+					 style="width:100px;height:100px;">{{/each}} {{/if}}
+				</div>
+			</div>
+
+>>>>>>> e08f2814689a979b0e5e9befaa8f5489a9cd7868
+		</div>
+		{{/each}}
+		<!-- /Trending -->
 
 		<h2 id="aboutus" class="uk-text-center" style="color: white">About Us</h2>
 
@@ -163,6 +200,7 @@
 							feeling. We created this website to give you the ability to go beyond the superficial words and get insights on how
 							your friends and favorites celebrities really fell when they are on twitter..</p>
 		<div class="w3-content w3-section">
+<<<<<<< HEAD
   <img class="mySlides" src="/images/about_shane.png" style="width:80%; margin-left:10%; margin-right:10%" >
   <img class="mySlides" src="/images/About_renata.png" style="width:80%; margin-left:10%; margin-right:10%">
   <img class="mySlides" src="/images/About_Aishu.png" style=" width:80%; margin-left:10%; margin-right:10%" >
@@ -186,10 +224,51 @@ function carousel() {
     setTimeout(carousel, 5000); // Change image every 5 seconds
 }
 </script>
+=======
+			<img class="mySlides" src="/images/about_shane.png" style="width:80%; margin-left:10%; margin-right:10%">
+			<img class="mySlides" src="/images/About_renata.png" style="width:80%; margin-left:10%; margin-right:10%">
+			<img class="mySlides" src="/images/About_Aishu.png" style=" width:80%; margin-left:10%; margin-right:10%">
+			<img class="mySlides" src="/images/about_matt.png" style="width:80%; margin-left:10%; margin-right:10%">
+		</div>
+		<script>
+			//for about us
+
+			var myIndex = 0;
+			carousel();
+
+			function carousel() {
+				var i;
+				var x = document.getElementsByClassName("mySlides");
+				for (i = 0; i < x.length; i++) {
+					x[i].style.display = "none";
+				}
+				myIndex++;
+				if (myIndex > x.length) { myIndex = 1 }
+				x[myIndex - 1].style.display = "block";
+				setTimeout(carousel, 5000); // Change image every 5 seconds
+			}
+		</script>
+
+		<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
+			a third of the world’s population is using some form of social media, some of the notable users include the President
+			of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage of
+			Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are feeling.
+			We created this website to give you the ability to go beyond the superficial words and get insights on how your friends
+			and favorites celebrities really fell when they are on twitter..</p>
+
+		<!-- /About Us -->
+
+		<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
+			a third of the world’s population is using some form of social media, some of the notable users include the President
+			of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage of
+			Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are feeling.
+			We created this website to give you the ability to go beyond the superficial words and get insights on how your friends
+			and favorites celebrities really fell when they are on twitter.</p>
+>>>>>>> e08f2814689a979b0e5e9befaa8f5489a9cd7868
 		<!-- /Trending -->
 
 		<!-- This is the modal for Log In -->
-		
+
 		<div id="my-id" uk-modal>
 			<div class="uk-modal-dialog uk-modal-body">
 				<h2 class="uk-modal-title"> Log In to your account</h2>
@@ -208,58 +287,61 @@ function carousel() {
 
 							<input class="uk-input" id="login-password" required type="password" placeholder="your password">
 						</div>
+					</div>
 
 
-						<div class="uk-margin">
-							<input type="submit" value="log in">
+					<div class="uk-margin">
+						<input class="uk-button" type="submit" value="log in">
 
-							<p class='error-text'> Incorrect Email/Password</p>
+						<p class='error-text'> Incorrect Email/Password</p>
+					</div>
 				</form>
 
 
 				</select>
-				</div>
-				</div>
-
 			</div>
 
-			</form>
+		</div>
+
+		</form>
 
 		</div>
+</div>
+
+
+</div>
+
+
+<!-- This is the modal for Sing up  -->
+<div id="my-id1" uk-modal>
+	<div class="uk-modal-dialog uk-modal-body">
+		<h2 class="uk-modal-title"> Create a free account</h2>
+
+		<form class="uk-form-horizontal uk-margin-large signup">
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-horizontal-text">e-mail</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" id="sign-up-email" name="email" type="email" required placeholder="Please enter your email">
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-horizontal-text">Username</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" id="sign-up-username" type="text" required placeholder="please enter your Name">
+				</div>
+			</div>
+			<div class="uk-margin">
+				<label class="uk-form-label" for="form-horizontal-select">Password</label>
+				<div class="uk-form-controls">
+
+					<input class="uk-input" id="sign-up-password" type="password" required placeholder="your password">
+
+					</select>
+				</div>
+			</div>
+			<input class="uk-button" type="submit" value="sign up">
+
+
 	</div>
-
-
-	</div>
-	
-
-	<!-- This is the modal for Sing up  -->
-	<div id="my-id1" uk-modal>
-		<div class="uk-modal-dialog uk-modal-body">
-			<h2 class="uk-modal-title"> Create a free account</h2>
-
-			<form class="uk-form-horizontal uk-margin-large signup">
-				<div class="uk-margin">
-					<label class="uk-form-label" for="form-horizontal-text">e-mail</label>
-					<div class="uk-form-controls">
-						<input class="uk-input" id="sign-up-email" name="email" type="email" required placeholder="Please enter your email">
-					</div>
-				</div>
-				<div class="uk-margin">
-					<label class="uk-form-label" for="form-horizontal-text">Username</label>
-					<div class="uk-form-controls">
-						<input class="uk-input" id="sign-up-username" type="text" required placeholder="please enter your Name">
-					</div>
-				</div>
-				<div class="uk-margin">
-					<label class="uk-form-label" for="form-horizontal-select">Password</label>
-					<div class="uk-form-controls">
-
-						<input class="uk-input" id="sign-up-password" type="password" required placeholder="your password">
-
-						</select>
-					</div>
-				</div>
-				<input type="submit" value="sign up">
-
-
-		</div>
+</div>
+<script src="../javascripts/index.js"></script>

@@ -50,15 +50,18 @@
 			<header id="header" style="background-color: clear;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
 				<div class="uk-container">
 					<nav id="navbar" data-uk-navbar="mode: click;">
-						<div class="uk-navbar-left nav-overlay uk-visible@m">
+						<div id="top-left-buttons" class="uk-navbar-left nav-overlay uk-visible@m">
 							<ul class="uk-navbar-nav">
 								<li>
-									<a uk-toggle="target: #my-id" title="Subscribe">Subscribe</a>
+									<a id='log-out'>Log Out</a>
+								</li>
+								<li>
+									<a id='go-home'>Back to Home</a>
 								</li>
 							</ul>
 						</div>
 						<div class="uk-navbar-center nav-overlay">
-							<h2 class="user-name">Welcome Back User</h2>
+							<h2>Welcome Back <span class="user-name"></span></h2>
 					
 					</nav>
 				</div>
@@ -88,4 +91,4 @@
 						</section>
 			
 			<!-- HERO -->
-			
+<script src="../javascripts/user.js"></script>
