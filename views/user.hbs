@@ -3,6 +3,7 @@
 	body {
 		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
+		min-height: 100vh;
 	}
 
 	nav.nav-scroll {
@@ -98,7 +99,7 @@
 	</section>
 
 	<!-- HERO -->
-
+{{#if hastweets}}
 	{{#each items}}
 </div>
 <div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
@@ -124,6 +125,11 @@
 
 </div>
 {{/each}}
+{{else}}
+
+<h3 class="uk-text-center">You haven't subscribed to any users!</h3>
+
+{{/if}}
 
 
 <script src="../javascripts/user.js"></script>

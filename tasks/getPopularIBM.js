@@ -17,17 +17,21 @@ var client = new Twitter(keys.twitter);
 // Database
 let db = require("../models");
 
+let startupCall;
 // So we can set this function to run every 12 hours
 var schedule = require('node-schedule');
-
-let startupCall =/*  process.env.GET_TWEETS_ON_START ||  */false;
+if (process.env.GET_TWEETS_ON_START && process.env.GET_TWEETS_ON_START === true) {
+    startupCall = true;
+} else {
+    startupCall = false;
+}
 
 let doIt = function () {
 
     db.popularTweets.drop();
 
     let handleArray = ["katyperry", "barackobama", "rihanna", "justinbeiber", "taylorswift13", "ladygaga", "theellenshow", "cristiano", "jtimberlake", "kinkardashian", "ddlovato", "selenagomez", "britneyspears", "realdonaldtrump", "shakira", "jimmyfallon", "billgates", "jlo", "brunomars", "oprah", "kingjames", "mileycyrus", "drake", "kevinhart4real", "wizkhalifa", "chrisbrown", "emmawatson", "conanobrien", "adele", "zaynmalik", "danieltosh", "potus"];
-    
+
     let analysisArray = [];
     let numberOfCalls = 0;
     let callsExpected = 0;

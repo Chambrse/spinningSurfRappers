@@ -39,6 +39,8 @@ router.get('/user', isAuthenticated, function (req, res, next) {
       id: userId
     }
   }).then(function (dbUser) {
+
+    // console.log("inside db call", dbUser);
     let ret = {
       userName: dbUser.User_name,
       subs: []
@@ -48,55 +50,60 @@ router.get('/user', isAuthenticated, function (req, res, next) {
       ret.subs.push(userHandle.Handle);
     })
 
+
     let analysisArray = [];
     let numberOfCalls = 0;
     let callsExpected = 0;
-    ret.subs.forEach(function (element, index) {
+    if (ret.subs.length) {
 
-      // Get popular tweets from the last week from the twitter accounts with the most followers
-      client.get('search/tweets', {
-        q: "from:" + element.dataValues.handleName /* + "-filter:retweets" */, result_type: "mixed", tweet_mode: 'extended', count: 10
-      }, function (error, tweets, response) {
+      ret.subs.forEach(function (element, index) {
 
-        // console.log(error);
+        // Get popular tweets from the last week from the twitter accounts with the most followers
+        client.get('search/tweets', {
+          q: "from:" + element.dataValues.handleName /* + "-filter:retweets" */, result_type: "mixed", tweet_mode: 'extended', count: 10
+        }, function (error, tweets, response) {
 
-        if (error) throw error;
+          // console.log(error);
 
-        callsExpected += tweets.statuses.length;
+          if (error) throw error;
 
-        tweets.statuses.forEach(element => {
+          callsExpected += tweets.statuses.length;
 
-          let text = element.full_text;
+          tweets.statuses.forEach(element => {
 
-          var toneParams = {
-            'tone_input': { 'text': text },
-            'content_type': 'application/json'
-          };
+            let text = element.full_text;
 
-          toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
+            var toneParams = {
+              'tone_input': { 'text': text },
+              'content_type': 'application/json'
+            };
 
-            if (error) {
-              console.log(error);
-            } else {
-              numberOfCalls++;
+            toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
 
-              analysisArray.push({
-                tweet_created_at: element.created_at,
-                tweet_body: element.full_text,
-                poster_name: element.user.name,
-                poster_handle: element.user.screen_name,
-                poster_profile_image: element.user.profile_image_url,
-                retweets: element.retweet_count,
-                favorites: element.favorite_count,
-                emotions: toneAnalysis
-              });
+              if (error) {
+                console.log(error);
+              } else {
+                numberOfCalls++;
 
-              if (numberOfCalls === callsExpected) {
-                res.render("user", {items: analysisArray});
-                // res.json(analysisArray);
+                analysisArray.push({
+                  tweet_created_at: element.created_at,
+                  tweet_body: element.full_text,
+                  poster_name: element.user.name,
+                  poster_handle: element.user.screen_name,
+                  poster_profile_image: element.user.profile_image_url,
+                  retweets: element.retweet_count,
+                  favorites: element.favorite_count,
+                  emotions: toneAnalysis
+                });
+
+                if (numberOfCalls === callsExpected) {
+                  res.render("user", {items: analysisArray, hastweets: true});
+                  // res.json(analysisArray);
+                };
+
               };
 
-            };
+            });
 
           });
 
@@ -104,7 +111,9 @@ router.get('/user', isAuthenticated, function (req, res, next) {
 
       });
 
-    });
+    } else {
+      res.render("user", {items: {}, hastweets: false});
+    };
 
   });
 
@@ -117,7 +126,7 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/', function (req, res, next) {
-  db.popularTweets.findAll({order: [['tweet_created_at', 'DESC']]}).then(function (data) {
+  db.popularTweets.findAll({ order: [['tweet_created_at', 'DESC']] }).then(function (data) {
 
     data.forEach(element => {
       element.emotions = JSON.parse(element.emotions);
