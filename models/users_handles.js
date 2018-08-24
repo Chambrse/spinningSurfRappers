@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const UsersHandles = sequelize.define("UsersHandles", {});
+    let UsersHandles = sequelize.define("UsersHandles", {});
 
     UsersHandles.associate = function (models) {
         UsersHandles.belongsTo(models.UserDetails);

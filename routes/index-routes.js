@@ -2,7 +2,7 @@ var express = require('express');
 var db = require("../models");
 var router = express.Router();
 var path = require("path");
-
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 const keys = require('../keys.js');
 
 //twitter
@@ -24,7 +24,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
 });
 
 /* GET user page */
-router.get('/user', function (req, res, next) {
+router.get('/user', isAuthenticated,function (req, res, next) {
   res.render('user');
 });
 
@@ -34,7 +34,6 @@ router.get('/about', function (req, res, next) {
 });
 
 
-// Test the sequelize mysql connection. Should display json of the test database items.
 router.get('/', function (req, res, next) {
   db.popularTweets.findAll({order: [['tweet_created_at', 'DESC']]}).then(function (data) {
 
@@ -43,6 +42,7 @@ router.get('/', function (req, res, next) {
     });
 
     res.render("index", { items: data });
+    // res.json(data);
   });
 });
 
@@ -70,13 +70,10 @@ router.post('/signup', function (req, res, next) {
       //not sure what to do if they get an error
     })
 
-})
-
-// log in post request
+});
 
 
-
-// Indico sentiment analysis by twitter handle.
+/* // Indico sentiment analysis by twitter handle.
 router.get('/sentiment/:handle', function (req, res, next) {
   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
@@ -125,12 +122,17 @@ router.get('/sentiment/:handle', function (req, res, next) {
   });
 
 });
+ */
 
 // ibm watson tone analyzer by handle
 router.get('/ibm/:handle', function (req, res, next) {
 
-  var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 10 };
+  var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 20, include_rts: false };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
+    console.log(response);
+    console.log(error);
+
+    // res.json(tweets);
 
     let analysisArray = [];
     let numberOfCalls = 0;
@@ -163,7 +165,7 @@ router.get('/ibm/:handle', function (req, res, next) {
           });
 
           if (numberOfCalls === tweets.length) {
-            res.json(analysisArray);
+            res.render("index", { items: analysisArray });
           };
 
         };

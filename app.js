@@ -10,14 +10,19 @@ var session = require("express-session");
 
 // Directions for our routers
 var indexRouter = require('./routes/index-routes.js');
-var usersRouter = require('./routes/user_details-api-routes.js');
+var usersRouter = require('./routes/user_details-routes.js');
 // var authRouter = require('./routes/auth-routes.js');
 
 // Run the function that gets new popular tweets at a scheduled time (every 12 hours).
 require("./tasks/getPopularIBM")();
 
-var indexRouter = require('./routes/index-routes');
+// Get the api keys into env variables
+require("dotenv").config();
+
 var app = express();
+
+//d3 
+//var d3 = require('d3');
 
 // Sequelize db
 var db = require("./models");
@@ -41,6 +46,8 @@ app.use(passport.session());
 
 // Routes
 require('./routes/auth-routes.js')(app);
+require('./routes/user_details-routes.js')(app);
+require('./routes/passport-api-routes.js')(app);
 require('./routes/handles-api-routes.js')(app);
 
 app.use('/', indexRouter);

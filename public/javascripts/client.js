@@ -1,9 +1,56 @@
+function getUserData(cb) {
+    $.get("/api/user_data").then(function (data) {
+        $(".user-name").text("Welcome back " + data.email);
+    });
+
+    $("#searchbar").on("submit", function() {
+        console.log($("#searchbar").val());
+        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
+
+        });
+    });
+
+    $("form.searchbar").on("submit", function(e) {
+        e.preventDefault();
+        console.log($("#searchbar").val().trim());
+        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
+            // console.log(data);
+            var bodyContent = data;
+            $('body').html(bodyContent);
+        });
+
+        // console.log(data);
+        cb(data)
+        // return data;
+        // ^^ wont work idk why
+    });
+};
+
+function subscribeTo(thisUser, thisHandleName) {
+    $.post("/api/user/subscribeto/" + thisHandleName, { id: thisUser.id })
+        .then(function (data) {
+            console.log(data);
+        });
+};
+
+function favorite(thisUser, thisTweetId, tweetContents) {
+    $.post("/api/user/favorite",
+        {
+            id: thisUser.id,
+            tweetId: thisTweetId,
+            tweet: tweetContents
+        })
+        .then(function (data) {
+            console.log(data);
+        });
+};
+
+function logOut(){
+    $.get("/logout");
+}
 
 $(document).ready(function () {
-    $.get("/api/user_data").then(function (data) {
-        $(".user-name").text(data.email);
-        console.log(data);
-    });
+
 
 
     // SIGNUP JQUERY
@@ -86,6 +133,12 @@ $(document).ready(function () {
             $(".error-text").show();
         });
     }
+
+    // SUBSCRIBE JQUERY
+
+
+    // FAVORITE JQUERY
+
 
     // On Startup
     $(".error-text").hide();
