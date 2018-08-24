@@ -20,7 +20,7 @@ let db = require("../models");
 let startupCall;
 // So we can set this function to run every 12 hours
 var schedule = require('node-schedule');
-if (process.env.GET_TWEETS_ON_START && process.env.GET_TWEETS_ON_START === true) {
+if (process.env.GET_TWEETS_ON_START === "true") {
     startupCall = true;
 } else {
     startupCall = false;
