@@ -1,6 +1,6 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
-        $(".user-name").text("Welcome back " + data.email);
+        cb(data);
     });
 
     $("#searchbar").on("submit", function() {
@@ -20,7 +20,7 @@ function getUserData(cb) {
         });
 
         // console.log(data);
-        cb(data)
+        
         // return data;
         // ^^ wont work idk why
     });
@@ -120,7 +120,7 @@ $(document).ready(function () {
         passwordLoginInput.val("");
     });
 
-    // loginUser does a post to our "api/login" route and if successful, redirects us to the members page
+    // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(email, password) {
         $.post("/api/login", {
             email: email,
@@ -142,8 +142,4 @@ $(document).ready(function () {
 
     // On Startup
     $(".error-text").hide();
-<<<<<<< HEAD
-
-=======
->>>>>>> e08f2814689a979b0e5e9befaa8f5489a9cd7868
 });
