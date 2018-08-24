@@ -11,6 +11,10 @@ module.exports = function (app) {
         include: [{
           model: db.Handles
         }]
+      },
+      {
+        model: db.UsersFavoritedTweets,
+        include: db.FavoritedTweets
       }],
       where: {
         id: userId
@@ -24,7 +28,8 @@ module.exports = function (app) {
       dbUser.UsersHandles.forEach(userHandle => {
         ret.subs.push(userHandle.Handle.handleName);
       })
-      res.json(ret);
+      // res.json(ret);
+      res.json(dbUser);
 
     });
   });
