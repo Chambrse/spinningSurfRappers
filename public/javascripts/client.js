@@ -1,15 +1,9 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
         $(".user-name").text("Welcome back " + data.email);
+        cb(data);
     });
-
-    $("#searchbar").on("submit", function() {
-        console.log($("#searchbar").val());
-        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
-
-        });
-    });
-
+    
     $("form.searchbar").on("submit", function(e) {
         e.preventDefault();
         console.log($("#searchbar").val().trim());
@@ -19,10 +13,6 @@ function getUserData(cb) {
             $('body').html(bodyContent);
         });
 
-        // console.log(data);
-        cb(data)
-        // return data;
-        // ^^ wont work idk why
     });
 };
 
@@ -133,12 +123,6 @@ $(document).ready(function () {
             $(".error-text").show();
         });
     }
-
-    // SUBSCRIBE JQUERY
-
-
-    // FAVORITE JQUERY
-
 
     // On Startup
     $(".error-text").hide();

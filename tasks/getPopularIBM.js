@@ -22,7 +22,6 @@ var schedule = require('node-schedule');
 
 let startupCall =/*  process.env.GET_TWEETS_ON_START ||  */false;
 
-
 let doIt = function () {
 
     db.popularTweets.drop();
@@ -36,8 +35,10 @@ let doIt = function () {
 
         // Get popular tweets from the last week from the twitter accounts with the most followers
         client.get('search/tweets', {
-            q: "from:" + element/*  + "-filter:retweets" */, result_type: "mixed", tweet_mode: 'extended', count: 2
+            q: "from:" + element /* + "-filter:retweets" */, result_type: "mixed", tweet_mode: 'extended', count: 2
         }, function (error, tweets, response) {
+
+            // console.log(error);
 
             if (error) throw error;
 

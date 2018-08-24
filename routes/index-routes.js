@@ -24,7 +24,9 @@ var toneAnalyzer = new ToneAnalyzerV3({
 });
 
 /* GET user page */
-router.get('/user', isAuthenticated,function (req, res, next) {
+router.get('/user', isAuthenticated, function (req, res, next) {
+
+
   res.render('user');
 });
 

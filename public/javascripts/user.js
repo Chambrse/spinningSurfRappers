@@ -13,13 +13,16 @@ $(document).ready(function () {
             window.location.replace("/");
         });
 
-        
 
-        
-        $.get('/api/user_subs/' + thisUser.id).then(function (data) {
-            console.log(data);
 
-            //twitter api call to get subs to display
-        });
-    })
+
+/*         $.get('/api/user_subs/' + thisUser.id).then(function (data) {
+
+            var bodyContent = data;
+            $('body').html(bodyContent);
+
+        }); */
+    });
+
+
 });

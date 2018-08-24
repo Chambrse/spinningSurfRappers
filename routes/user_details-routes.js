@@ -1,5 +1,21 @@
 var db = require("../models");
 
+const keys = require('../keys.js');
+
+// IBM
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+var toneAnalyzer = new ToneAnalyzerV3({
+    "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
+    "username": keys.IBM.IBMUsername,
+    "password": keys.IBM.IBMPassword,
+    "version_date": "2017-09-21"
+});
+
+// Twitter API
+var Twitter = require('twitter');
+var client = new Twitter(keys.twitter);
+
 module.exports = function (app) {
   // this call will retrieve all the current subscriptions the current user has
   app.get("/api/user_subs/:userId", function (req, res) {
@@ -24,9 +40,66 @@ module.exports = function (app) {
       dbUser.UsersHandles.forEach(userHandle => {
         ret.subs.push(userHandle.Handle);
       })
-      res.json(ret);
+
+      let analysisArray = [];
+      let numberOfCalls = 0;
+      let callsExpected = 0;
+      ret.subs.forEach(function (element, index) {
+
+        // Get popular tweets from the last week from the twitter accounts with the most followers
+        client.get('search/tweets', {
+          q: "from:" + element.dataValues.handleName /* + "-filter:retweets" */, result_type: "mixed", tweet_mode: 'extended', count: 10
+        }, function (error, tweets, response) {
+
+          // console.log(error);
+
+          if (error) throw error;
+
+          callsExpected += tweets.statuses.length;
+
+          tweets.statuses.forEach(element => {
+
+            let text = element.full_text;
+
+            var toneParams = {
+              'tone_input': { 'text': text },
+              'content_type': 'application/json'
+            };
+
+            toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
+
+              if (error) {
+                console.log(error);
+              } else {
+                numberOfCalls++;
+
+                analysisArray.push({
+                  tweet_created_at: element.created_at,
+                  tweet_body: element.full_text,
+                  poster_name: element.user.name,
+                  poster_handle: element.user.screen_name,
+                  poster_profile_image: element.user.profile_image_url,
+                  retweets: element.retweet_count,
+                  favorites: element.favorite_count,
+                  emotions: JSON.stringify(toneAnalysis)
+                });
+
+                if (numberOfCalls === callsExpected) {
+                  res.render("user", {items: analysisArray});
+                };
+
+              };
+
+            });
+
+          });
+
+        });
+
+      });
 
     });
+
   });
   // API call to handle user's subscribing to certain handles
   // User ID is sent by front end via req.body.id
