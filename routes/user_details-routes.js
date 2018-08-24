@@ -22,7 +22,7 @@ module.exports = function (app) {
       };
 
       dbUser.UsersHandles.forEach(userHandle => {
-        ret.subs.push(userHandle.Handle);
+        ret.subs.push(userHandle.Handle.handleName);
       })
       res.json(ret);
 
@@ -73,7 +73,8 @@ module.exports = function (app) {
         UserDetailId: userId,
         HandleHandleName: handleName
       });
-      res.json('USER SUBSRIBED TO ' + handleName);
+      // res.json('USER SUBSRIBED TO ' + handleName);
+      res.json(true);
     }
     else {
       db.UsersHandles.destroy({
@@ -82,7 +83,8 @@ module.exports = function (app) {
           HandleHandleName: handleName
         }
       });
-      res.json('USER UNSUBSRIBED TO ' + handleName);
+      // res.json('USER UNSUBSRIBED TO ' + handleName);
+      res.json(false);
     }
   }
 

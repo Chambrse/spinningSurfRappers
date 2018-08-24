@@ -46,7 +46,7 @@ module.exports = function (app) {
         else {
             // Otherwise send back the user's email and id
             // Sending back a password, even a hashed password, isn't a good idea
-            console.log(req.user);
+            // console.log(req.user);
             // Everything that is stored in the user in the database can be sent back to the front-end
             res.json({
                 username: req.user.User_name,

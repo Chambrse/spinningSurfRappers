@@ -24,7 +24,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
 });
 
 /* GET user page */
-router.get('/user', isAuthenticated,function (req, res, next) {
+router.get('/user', isAuthenticated, function (req, res, next) {
   res.render('user');
 });
 
@@ -35,14 +35,28 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/', function (req, res, next) {
-  db.popularTweets.findAll({order: [['tweet_created_at', 'DESC']]}).then(function (data) {
+  if (req.user) {
+    user = {
+      username: req.user.User_name,
+      id: req.user.id,
+      subs: []
+    };
+    
+  } else {
+    user = {}
+  }
+
+  db.popularTweets.findAll({ order: [['tweet_created_at', 'DESC']] }).then(function (data) {
 
     data.forEach(element => {
       element.emotions = JSON.parse(element.emotions);
     });
 
-    res.render("index", { items: data });
-    // res.json(data);
+
+    res.render("index", {
+      items: data,
+      user: user
+    });
   });
 });
 
