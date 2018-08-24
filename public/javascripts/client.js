@@ -5,17 +5,8 @@ function getUserData(cb) {
 
     });
     
-    $("form.searchbar").on("submit", function(e) {
-        e.preventDefault();
-        console.log($("#searchbar").val().trim());
-        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
-            // console.log(data);
-            var bodyContent = data;
-            $('body').html(bodyContent);
-        });
-
-    });
 };
+
 
 function subscribeTo(thisUser, thisHandleName) {
     $.post("/api/user/subscribeto/" + thisHandleName, { id: thisUser.id })
@@ -49,6 +40,17 @@ function logOut(){
 }
 
 $(document).ready(function () {
+
+    $("form.searchbar").on("submit", function(e) {
+        e.preventDefault();
+        console.log($("#searchbar").val().trim());
+        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
+            // console.log(data);
+            var bodyContent = data;
+            $('body').html(bodyContent);
+        });
+    
+    });
 
 
 

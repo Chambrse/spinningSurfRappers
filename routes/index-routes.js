@@ -233,8 +233,6 @@ router.get('/ibm/:handle', function (req, res, next) {
 
   var params = { screen_name: req.params.handle, tweet_mode: 'extended', count: 20, include_rts: false };
   client.get('statuses/user_timeline', params, function (error, tweets, response) {
-    console.log(response);
-    console.log(error);
 
     // res.json(tweets);
 
