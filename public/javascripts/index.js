@@ -1,17 +1,14 @@
 $(document).ready(function () {
 
     getUserData((thisUser) => {
-        if (thisUser) {
-            console.log(thisUser);
-            $("#top-left-buttons").html(
-                "<li>" +
-                "<a id='log-out'>Log Out</a>" +
-                "</li>" +
-                "<li>" +
-                "<a id='my-profile'>My User Profile</a>" +
-                "</li>"
-            );
-        }
+        console.log(thisUser);
+        $.get("/api/user_subs/"+thisUser.id, function(data){
+            const userSubs = data.subs;
+            console.log(userSubs);
+            userSubs.forEach(sub => {
+                $("button[name=sub-button][handleName='"+sub+"']").text("Un-subscribe");
+            });
+        });
 
         $("body").on("click", '#log-out', function () {
             logOut();

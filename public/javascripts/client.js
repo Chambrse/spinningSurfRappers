@@ -1,6 +1,6 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
-        $(".user-name").text("Welcome back " + data.email);
+        cb(data)
     });
 
     $("#searchbar").on("submit", function() {
@@ -18,18 +18,21 @@ function getUserData(cb) {
             var bodyContent = data;
             $('body').html(bodyContent);
         });
-
-        // console.log(data);
-        cb(data)
-        // return data;
-        // ^^ wont work idk why
     });
 };
 
 function subscribeTo(thisUser, thisHandleName) {
     $.post("/api/user/subscribeto/" + thisHandleName, { id: thisUser.id })
         .then(function (data) {
-            console.log(data);
+            // data returns true/false
+            // true if user is now subbed
+            // false if no longer subbed
+            if (data){
+                $("button[name=sub-button][handleName='"+thisHandleName+"']").text("Un-subscribe");
+            }
+            else {
+                $("button[name=sub-button][handleName='"+thisHandleName+"']").text("Subscribe!");
+            }
         });
 };
 
