@@ -7,32 +7,47 @@ var keys = require("../keys.js");
 passport.use(new LocalStrategy(
   // Our user will sign in using an email, rather than a "username"
   {
-    usernameField: "email"
+    usernameField: "email",
+
   },
   function (email, password, done) {
     // When a user tries to sign in this code runs
-    console.log(email,password);
-    db.UserDetails.findOne({
-      where: {
-        email: email
-      }
-    }).then(function (dbUser) {
+
+    if (email.indexOf("@") != -1) {
+      db.UserDetails.findOne({
+        where: {
+          email: email
+        }
+      }).then(UserCheck);
+    }
+    else {
+      db.UserDetails.findOne({
+        where: {
+          User_name: email
+        }
+      }).then(UserCheck);
+    }
+    function UserCheck(dbUser) {
       console.log('this user', dbUser);
       // If there's no user with the given email
+      // Try and look for a username
       if (!dbUser) {
         return done(null, false, {
           message: "Incorrect email."
         });
       }
+
       // If there is a user with the given email, but the password the user gives us is incorrect
       else if (dbUser.dataValues.Password !== (password)) {
         return done(null, false, {
           message: "Incorrect password."
         });
       }
+      
       // If none of the above, return the user
       return done(null, dbUser);
-    });
+
+    }
   }
 ));
 
