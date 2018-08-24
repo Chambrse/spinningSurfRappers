@@ -1,6 +1,5 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
-        $(".user-name").text("Welcome back " + data.email);
         cb(data);
     });
     
