@@ -15,14 +15,9 @@ $(document).ready(function () {
         });
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
 
         $.get('/api/user_subs/' + thisUser.id).then(function (data) {
             console.log(data);
->>>>>>> 0165d88a1755315fe24cd3861b7bbeb5c0a7b2ab
 
 
 /*         $.get('/api/user_subs/' + thisUser.id).then(function (data) {
@@ -33,7 +28,8 @@ $(document).ready(function () {
         }); */
     });
 
-=======
->>>>>>> d0683949546956ae52d91fe611ad613705741680
+
+
+});
 
 });

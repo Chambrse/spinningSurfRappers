@@ -150,7 +150,7 @@
 					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
 					</div>
 					<div class="uk-width-expand">
-						<form action="cards.html">
+						<form>
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
 								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
@@ -211,13 +211,9 @@
 					<p>{{poster_name}}</p>
 					<p>{{poster_handle}}</p>
 					<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
-<<<<<<< HEAD
-					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>Subscribe!</button>
-=======
 					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>
 						{{!-- {{#if}} --}} Subscribe! {{!-- {{/if}} --}}
 					</button>
->>>>>>> 4553611ab8ce7e9e696c2b148ce18052943e0a0d
 					<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite this tweet!
 					</button>
 				</div>

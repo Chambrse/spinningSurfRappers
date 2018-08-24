@@ -27,13 +27,10 @@ module.exports = function (app) {
         include: [{
           model: db.Handles
         }]
-<<<<<<< HEAD
-=======
       },
       {
         model: db.UsersFavoritedTweets,
         include: db.FavoritedTweets
->>>>>>> e42865b3f85f06221fcab6654d35b86a3ec1349f
       }],
       where: {
         id: userId
@@ -47,12 +44,8 @@ module.exports = function (app) {
       dbUser.UsersHandles.forEach(userHandle => {
         ret.subs.push(userHandle.Handle.handleName);
       })
-<<<<<<< HEAD
-      res.json(ret);
-=======
       // res.json(ret);
       res.json(dbUser);
->>>>>>> e42865b3f85f06221fcab6654d35b86a3ec1349f
 
     });
   });
