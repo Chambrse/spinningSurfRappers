@@ -2,7 +2,7 @@ var db = require("../models");
 
 const keys = require('../keys.js');
 
-// IBM
+// IBM  
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 var toneAnalyzer = new ToneAnalyzerV3({
@@ -27,10 +27,6 @@ module.exports = function (app) {
         include: [{
           model: db.Handles
         }]
-      },
-      {
-        model: db.UsersFavoritedTweets,
-        include: db.FavoritedTweets
       }],
       where: {
         id: userId
@@ -45,7 +41,7 @@ module.exports = function (app) {
         ret.subs.push(userHandle.Handle.handleName);
       })
       // res.json(ret);
-      res.json(dbUser);
+      res.json(ret);
 
     });
   });
