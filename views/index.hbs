@@ -152,14 +152,47 @@
 			</div>
 
 			<!-- HERO -->
+			<!--smily slide show-->
+			<div uk-slideshow="animation: push">
 
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+
+					<ul class="uk-slideshow-items">
+						<li>
+							<img data-src="/images/joy.png" width="50" height="50" alt="joy" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/confident.png" alt="confident" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/anger.png" alt="anger" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/sadness.png"  alt="sadness" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/fear.png"  alt="fear" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/tentative.png" alt="tentative" uk-cover>
+						</li>
+					</ul>
+
+					<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+					<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
+				</div>
+
+				<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+			</div>
 
 			<!-- Trending -->
 			<br>
 			<h1 class="uk-text-center uk-text-primary">Trending</h1>
 			{{#each items}}
 		</div>
-		
+
 		<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
 			<div>
 				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center  uk-card-body">
