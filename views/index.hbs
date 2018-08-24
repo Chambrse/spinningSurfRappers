@@ -55,28 +55,40 @@
 	}
 </style>
 <!--/CSS-->
-<!--HEADER-->
-<nav style="background-color: black" class="uk-navbar-container" uk-navbar>
-	<div class="uk-navbar-left uk-">
-		<ul class="uk-navbar-nav uk-margin-large-left">
-			<li>
-				<a href="">
-					<h1 class=" uk-text-primary uk-text-bold">Welcome to Twitter Motions</h1>
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="uk-navbar-right">
-		<ul class="uk-navbar-nav">
-			<li>
-				<a uk-toggle="target: #my-id" title="Subscribe" href="">Log In</a>
-			</li>
-			<li>
-				<a uk-toggle="target: #my-id1" title="Sign Up" href="">Sign Up</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+<header>
+	<!--HEADER-->
+	<nav style="background-color: black" class="uk-navbar-container" uk-navbar>
+		<div class="uk-navbar-left uk-">
+			<ul class="uk-navbar-nav uk-margin-large-left">
+				<li>
+					<a href="">
+						<h1 class=" uk-text-primary uk-text-bold">Welcome to Twitter Motions</h1>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="uk-navbar-right">
+			<ul class="uk-navbar-nav">
+				<li>
+					{{#unless user.id}}
+					<a uk-toggle="target: #my-id" title="Subscribe" href="">Log In</a>
+					{{else}}
+					<a id="log-out">Log Out</a>
+					{{/unless}}
+				</li>
+				<li>
+					{{#unless user.id}}
+					<a uk-toggle="target: #my-id1" title="Sign Up" href="">Sign Up</a>
+					{{else}}
+					<a id="my-profile">My User Page</a>
+					{{/unless}}
+				</li>
+			</ul>
+
+		</div>
+
+	</nav>
+</header>
 
 {{!--
 <div class="uk-offcanvas-content">
@@ -146,10 +158,10 @@
 					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
 					</div>
 					<div class="uk-width-expand">
-						<form action="cards.html">
+						<form class="searchbar">
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
-								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
+								<input id="searchbar" class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
 							</div>
 						</form>
 					</div>
@@ -215,6 +227,24 @@
 	</span> --}}
 	</div>
 
+		<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
+			<div>
+
+				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-body">
+
+					<img src={{poster_profile_image}} alt="{{poster_handle}}'s twitter avatar" style="border-radius: 50%;height:65px;">
+					<p>{{poster_name}}</p>
+					<p>{{poster_handle}}</p>
+					<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
+					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>
+						{{!-- {{#if}} --}} Subscribe! {{!-- {{/if}} --}}
+					</button>
+					<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite this tweet!
+					</button>
+				</div>
+			</div>
+			<div>
+				<div class="uk-card uk-text-contrast uk-text-center uk-card-body">
 
 
 	<!-- Trending -->

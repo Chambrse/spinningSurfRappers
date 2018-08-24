@@ -11,7 +11,6 @@
 		min-height: 100%;
 		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
-
 	}
 
 	nav.nav-scroll {
@@ -78,10 +77,7 @@
 				</div>
 				<div class="uk-navbar-center nav-overlay">
 
-					<h2>Welcome Back
-						<span class="user-name"></span>
-					</h2>
-
+					<h2>Welcome Back {{user.username}} </h2>
 
 			</nav>
 			</div>
@@ -96,7 +92,7 @@
 					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
 					</div>
 					<div class="uk-width-expand">
-						<form action="cards.html">
+						<form>
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
 								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
@@ -111,7 +107,6 @@
 	</section>
 
 	<!-- HERO -->
-
 {{#if hastweets}}
 	{{#each items}}
 </div>
