@@ -70,10 +70,18 @@
 		<div class="uk-navbar-right">
 			<ul class="uk-navbar-nav">
 				<li>
+					{{#unless user.id}}
 					<a uk-toggle="target: #my-id" title="Subscribe" href="">Log In</a>
+					{{else}}
+					<a id="log-out">Log Out</a>
+					{{/unless}}
 				</li>
 				<li>
+					{{#unless user.id}}
 					<a uk-toggle="target: #my-id1" title="Sign Up" href="">Sign Up</a>
+					{{else}}
+					<a id="my-profile">My User Page</a>
+					{{/unless}}
 				</li>
 			</ul>
 
@@ -150,10 +158,10 @@
 					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
 					</div>
 					<div class="uk-width-expand">
-						<form>
+						<form class="searchbar">
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
-								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
+								<input id="searchbar" class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
 							</div>
 						</form>
 					</div>
