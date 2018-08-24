@@ -1,6 +1,7 @@
 $(document).ready(function () {
     getUserData((thisUser) => {
         console.log(thisUser)
+        $(".user-name").text(thisUser.username);
         $.get("/api/user_subs/" + thisUser.id, function (data) {
             const userSubs = data.subs;
             console.log(data);
