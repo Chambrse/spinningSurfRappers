@@ -1,6 +1,8 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
+
         cb(data)
+
     });
 
     $("#searchbar").on("submit", function() {
@@ -18,6 +20,7 @@ function getUserData(cb) {
             var bodyContent = data;
             $('body').html(bodyContent);
         });
+
     });
 };
 
