@@ -1,6 +1,6 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
-        $(".user-name").text("Welcome back " + data.email);
+        cb(data);
     });
 
     $("#searchbar").on("submit", function() {
@@ -20,7 +20,7 @@ function getUserData(cb) {
         });
 
         // console.log(data);
-        cb(data)
+        
         // return data;
         // ^^ wont work idk why
     });
