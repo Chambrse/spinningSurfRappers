@@ -91,14 +91,14 @@
 				<div class="uk-overlay uk-overlay-primary uk-position-cover uk-flex uk-flex-center uk-flex-middle uk-light uk-text-center">
 					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
 					</div>
-					<div class="uk-width-expand">
+{{!-- 					<div class="uk-width-expand">
 						<form>
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
 								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
 							</div>
 						</form>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 
@@ -112,19 +112,17 @@
 </div>
 <div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
 	<div>
-		<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-hover uk-card-body">
+		<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-body">
 			<img src={{poster_profile_image}} alt="{{poster_handle}}'s twitter avatar" style="border-radius: 50%;height:65px;">
 			<p>{{poster_name}}</p>
 			<p>{{poster_handle}}</p>
 			<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
 			<button class="uk-button" name="sub-button" handleName={{poster_handle}}>Subscribe!</button>
-			<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite
-				this tweet!
-			</button>
+
 		</div>
 	</div>
 	<div>
-		<div class="uk-card uk-text-contrast uk-text-center uk-card-hover uk-card-body">
+		<div class="uk-card uk-text-contrast uk-text-center uk-card-body">
 
 			{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png" style="width:100px;height:100px;">{{/each}}
 			{{/if}}
