@@ -67,7 +67,8 @@ module.exports = function (app) {
         UserDetailId: userId,
         HandleHandleName: handleName
       });
-      res.json('USER SUBSRIBED TO ' + handleName);
+      // res.json('USER SUBSRIBED TO ' + handleName);
+      res.json(true);
     }
     else {
       db.UsersHandles.destroy({
@@ -76,7 +77,8 @@ module.exports = function (app) {
           HandleHandleName: handleName
         }
       });
-      res.json('USER UNSUBSRIBED TO ' + handleName);
+      // res.json('USER UNSUBSRIBED TO ' + handleName);
+      res.json(false);
     }
   }
 

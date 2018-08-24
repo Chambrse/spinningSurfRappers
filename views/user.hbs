@@ -1,9 +1,17 @@
 <!--CSS-->
 <style>
+
 	body {
 		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
 		min-height: 100vh;
+    }
+
+	html {
+		min-height: 100%;
+		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
+		background-size: cover;
+
 	}
 
 	nav.nav-scroll {
@@ -69,7 +77,11 @@
 					</ul>
 				</div>
 				<div class="uk-navbar-center nav-overlay">
-					<h2>Welcome Back <span class="user-name"></span></h2>
+
+					<h2>Welcome Back
+						<span class="user-name"></span>
+					</h2>
+
 
 			</nav>
 			</div>
@@ -99,6 +111,7 @@
 	</section>
 
 	<!-- HERO -->
+
 {{#if hastweets}}
 	{{#each items}}
 </div>
@@ -133,3 +146,4 @@
 
 
 <script src="../javascripts/user.js"></script>
+
