@@ -25,7 +25,98 @@ var toneAnalyzer = new ToneAnalyzerV3({
 
 /* GET user page */
 router.get('/user', isAuthenticated, function (req, res, next) {
-  res.render('user');
+
+  const userId = req.user.id;
+
+  db.UserDetails.findOne({
+    include: [{
+      model: db.UsersHandles,
+      include: [{
+        model: db.Handles
+      }]
+    }],
+    where: {
+      id: userId
+    }
+  }).then(function (dbUser) {
+
+    // console.log("inside db call", dbUser);
+    let ret = {
+      userName: dbUser.User_name,
+      subs: []
+    };
+
+    dbUser.UsersHandles.forEach(userHandle => {
+      ret.subs.push(userHandle.Handle);
+    })
+
+
+    let analysisArray = [];
+    let numberOfCalls = 0;
+    let callsExpected = 0;
+    if (ret.subs.length) {
+
+      ret.subs.forEach(function (element, index) {
+
+        // Get popular tweets from the last week from the twitter accounts with the most followers
+        client.get('search/tweets', {
+          q: "from:" + element.dataValues.handleName /* + "-filter:retweets" */, result_type: "mixed", tweet_mode: 'extended', count: 10
+        }, function (error, tweets, response) {
+
+          // console.log(error);
+
+          if (error) throw error;
+
+          callsExpected += tweets.statuses.length;
+
+          tweets.statuses.forEach(element => {
+
+            let text = element.full_text;
+
+            var toneParams = {
+              'tone_input': { 'text': text },
+              'content_type': 'application/json'
+            };
+
+            toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
+
+              if (error) {
+                console.log(error);
+              } else {
+                numberOfCalls++;
+
+                analysisArray.push({
+                  tweet_created_at: element.created_at,
+                  tweet_body: element.full_text,
+                  poster_name: element.user.name,
+                  poster_handle: element.user.screen_name,
+                  poster_profile_image: element.user.profile_image_url,
+                  retweets: element.retweet_count,
+                  favorites: element.favorite_count,
+                  emotions: toneAnalysis
+                });
+
+                if (numberOfCalls === callsExpected) {
+                  res.render("user", {items: analysisArray, hastweets: true});
+                  // res.json(analysisArray);
+                };
+
+              };
+
+            });
+
+          });
+
+        });
+
+      });
+
+    } else {
+      res.render("user", {items: {}, hastweets: false});
+    };
+
+  });
+
 });
 
 //get about page
@@ -35,6 +126,7 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/', function (req, res, next) {
+
   if (req.user) {
     user = {
       username: req.user.User_name,
@@ -45,6 +137,7 @@ router.get('/', function (req, res, next) {
   } else {
     user = {}
   }
+
 
   db.popularTweets.findAll({ order: [['tweet_created_at', 'DESC']] }).then(function (data) {
 

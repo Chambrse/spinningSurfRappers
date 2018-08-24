@@ -1,5 +1,21 @@
 var db = require("../models");
 
+const keys = require('../keys.js');
+
+// IBM
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+var toneAnalyzer = new ToneAnalyzerV3({
+    "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
+    "username": keys.IBM.IBMUsername,
+    "password": keys.IBM.IBMPassword,
+    "version_date": "2017-09-21"
+});
+
+// Twitter API
+var Twitter = require('twitter');
+var client = new Twitter(keys.twitter);
+
 module.exports = function (app) {
   // this call will retrieve all the current subscriptions the current user has
   app.get("/api/user_subs/:userId", function (req, res) {

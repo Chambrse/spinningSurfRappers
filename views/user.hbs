@@ -1,9 +1,17 @@
 <!--CSS-->
 <style>
+
+	body {
+		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
+		background-size: cover;
+		min-height: 100vh;
+    }
+
 	html {
 		min-height: 100%;
 		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
+
 	}
 
 	nav.nav-scroll {
@@ -69,9 +77,11 @@
 					</ul>
 				</div>
 				<div class="uk-navbar-center nav-overlay">
+
 					<h2>Welcome Back
 						<span class="user-name"></span>
 					</h2>
+
 
 			</nav>
 			</div>
@@ -101,4 +111,39 @@
 	</section>
 
 	<!-- HERO -->
-	<script src="../javascripts/user.js"></script>
+
+{{#if hastweets}}
+	{{#each items}}
+</div>
+<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
+	<div>
+		<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-hover uk-card-body">
+			<img src={{poster_profile_image}} alt="{{poster_handle}}'s twitter avatar" style="border-radius: 50%;height:65px;">
+			<p>{{poster_name}}</p>
+			<p>{{poster_handle}}</p>
+			<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
+			<button class="uk-button" name="sub-button" handleName={{poster_handle}}>Subscribe!</button>
+			<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite
+				this tweet!
+			</button>
+		</div>
+	</div>
+	<div>
+		<div class="uk-card uk-text-contrast uk-text-center uk-card-hover uk-card-body">
+
+			{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png" style="width:100px;height:100px;">{{/each}}
+			{{/if}}
+		</div>
+	</div>
+
+</div>
+{{/each}}
+{{else}}
+
+<h3 class="uk-text-center">You haven't subscribed to any users!</h3>
+
+{{/if}}
+
+
+<script src="../javascripts/user.js"></script>
+
