@@ -21,6 +21,33 @@ module.exports = function (app) {
   app.get("/api/user_subs/:userId", function (req, res) {
     const userId = req.params.userId;
 
+    db.UserDetails.findOne({
+      include: [{
+        model: db.UsersHandles,
+        include: [{
+          model: db.Handles
+        }]
+      },
+      {
+        model: db.UsersFavoritedTweets,
+        include: db.FavoritedTweets
+      }],
+      where: {
+        id: userId
+      }
+    }).then(function (dbUser) {
+      let ret = {
+        userName: dbUser.User_name,
+        subs: []
+      };
+
+      dbUser.UsersHandles.forEach(userHandle => {
+        ret.subs.push(userHandle.Handle.handleName);
+      })
+      // res.json(ret);
+      res.json(dbUser);
+
+    });
   });
   // API call to handle user's subscribing to certain handles
   // User ID is sent by front end via req.body.id
