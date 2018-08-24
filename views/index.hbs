@@ -54,29 +54,31 @@
 	}
 </style>
 <!--/CSS-->
-<header >
-<!--HEADER-->
-<nav  style="background-color: black" class="uk-navbar-container" uk-navbar>
-	<div class="uk-navbar-left uk-">
-		<ul class="uk-navbar-nav uk-margin-large-left">
-			<li>
-				<a href=""><h1 class=" uk-text-primary uk-text-bold">Welcome to Twitter Motions</h1></a>
-			</li>
-		</ul>
-	</div>
-	<div class="uk-navbar-right">
-		<ul class="uk-navbar-nav">
-			<li >
-				<a uk-toggle="target: #my-id" title="Subscribe" href="">Log In</a>
-			</li>
-			<li>
-				<a uk-toggle="target: #my-id1" title="Sign Up" href="">Sign Up</a>
-			</li>
-		</ul>
+<header>
+	<!--HEADER-->
+	<nav style="background-color: black" class="uk-navbar-container" uk-navbar>
+		<div class="uk-navbar-left uk-">
+			<ul class="uk-navbar-nav uk-margin-large-left">
+				<li>
+					<a href="">
+						<h1 class=" uk-text-primary uk-text-bold">Welcome to Twitter Motions</h1>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="uk-navbar-right">
+			<ul class="uk-navbar-nav">
+				<li>
+					<a uk-toggle="target: #my-id" title="Subscribe" href="">Log In</a>
+				</li>
+				<li>
+					<a uk-toggle="target: #my-id1" title="Sign Up" href="">Sign Up</a>
+				</li>
+			</ul>
 
-	</div>
+		</div>
 
-</nav>
+	</nav>
 </header>
 
 {{!--
@@ -157,6 +159,7 @@
 			<h1 class="uk-text-center uk-text-primary">Trending</h1>
 			{{#each items}}
 		</div>
+		
 		<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
 			<div>
 				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-hover uk-card-body">
