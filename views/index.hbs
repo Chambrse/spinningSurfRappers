@@ -1,6 +1,7 @@
 <!--CSS-->
 <style>
-	body {
+	html {
+		min-height: 100%;
 		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
 	}
@@ -90,10 +91,18 @@
 				<div class="uk-navbar-left nav-overlay uk-visible@m">
 					<ul id="top-left-buttons" class="uk-navbar-nav">
 						<li>
+							{{#unless user.id}}
 							<a uk-toggle="target: #my-id" title="Subscribe">Log In</a>
+							{{else}}
+							<a id='log-out'>Log Out</a>
+							{{/unless}}
 						</li>
 						<li>
+							{{#unless user.id}}
 							<a uk-toggle="target: #my-id1" title="Sign Up">Sign Up</a>
+							{{else}}
+							<a id='my-profile'>My User Profile</a>
+							{{/unless}}
 						</li>
 						<li>
 							<h2 class="uk-navbar-center">Welcome to Twitter Motions</h2>
@@ -195,12 +204,20 @@
 
 		<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
 			<div>
-				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center  uk-card-body">
+
+				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-body">
+
 					<img src={{poster_profile_image}} alt="{{poster_handle}}'s twitter avatar" style="border-radius: 50%;height:65px;">
 					<p>{{poster_name}}</p>
 					<p>{{poster_handle}}</p>
 					<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
+<<<<<<< HEAD
 					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>Subscribe!</button>
+=======
+					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>
+						{{!-- {{#if}} --}} Subscribe! {{!-- {{/if}} --}}
+					</button>
+>>>>>>> 4553611ab8ce7e9e696c2b148ce18052943e0a0d
 					<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite this tweet!
 					</button>
 				</div>

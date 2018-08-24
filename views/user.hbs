@@ -1,94 +1,149 @@
-	
-			<!--CSS-->
+<!--CSS-->
 <style>
-            body{
-                background:
-                url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) 
-                no-repeat center center fixed; 
-                background-size: cover;
-            }
-			nav.nav-scroll {
-				position: relative;
-				z-index: 2;
-				height: 2rem;
-				box-sizing: border-box;
-				overflow-y: hidden;
-				padding: 1rem;
-				border-top: 1px solid rgba(207, 36, 36, 0.075);
-			}
-			nav.nav-scroll > ul {
-				overflow-x: auto;
-				text-align: center;
-				white-space: nowrap;
-				-webkit-overflow-scrolling: touch;
-				padding-bottom: 1rem;
-			}
-			nav.nav-scroll > ul > li > a {
-				font-weight: 500;
-			}
-			.news-slide > li > .uk-card {
-				box-shadow: none;
-				border:  1px solid rgba(0,0,0,0.075);
-			}
-			h1, h2, h3, h4, h5, h6 {
-				font-weight: 700;
-			}
-			.uk-logo > img {
-				height: 58px;
-			}
-			#header.uk-sticky-below {
-				box-shadow: 0 2px 14px 0 rgba(0,0,0,0.07);
-			}
-		    
-			
-		</style>
-        <!--/CSS-->
 
-        <!--HEADER-->
-	<div class="uk-offcanvas-content">
-			
-			<header id="header" style="background-color: clear;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
-				<div class="uk-container">
-					<nav id="navbar" data-uk-navbar="mode: click;">
-						<div id="top-left-buttons" class="uk-navbar-left nav-overlay uk-visible@m">
-							<ul class="uk-navbar-nav">
-								<li>
-									<a id='log-out'>Log Out</a>
-								</li>
-								<li>
-									<a id='go-home'>Back to Home</a>
-								</li>
-							</ul>
-						</div>
-						<div class="uk-navbar-center nav-overlay">
-							<h2>Welcome Back <span class="user-name"></span></h2>
-					
-					</nav>
+	body {
+		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
+		background-size: cover;
+		min-height: 100vh;
+    }
+
+	html {
+		min-height: 100%;
+		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
+		background-size: cover;
+
+	}
+
+	nav.nav-scroll {
+		position: relative;
+		z-index: 2;
+		height: 2rem;
+		box-sizing: border-box;
+		overflow-y: hidden;
+		padding: 1rem;
+		border-top: 1px solid rgba(207, 36, 36, 0.075);
+	}
+
+	nav.nav-scroll>ul {
+		overflow-x: auto;
+		text-align: center;
+		white-space: nowrap;
+		-webkit-overflow-scrolling: touch;
+		padding-bottom: 1rem;
+	}
+
+	nav.nav-scroll>ul>li>a {
+		font-weight: 500;
+	}
+
+	.news-slide>li>.uk-card {
+		box-shadow: none;
+		border: 1px solid rgba(0, 0, 0, 0.075);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 700;
+	}
+
+	.uk-logo>img {
+		height: 58px;
+	}
+
+	#header.uk-sticky-below {
+		box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.07);
+	}
+</style>
+<!--/CSS-->
+
+<!--HEADER-->
+<div class="uk-offcanvas-content">
+
+	<header id="header" style="background-color: clear;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
+		<div class="uk-container">
+			<nav id="navbar" data-uk-navbar="mode: click;">
+				<div id="top-left-buttons" class="uk-navbar-left nav-overlay uk-visible@m">
+					<ul class="uk-navbar-nav">
+						<li>
+							<a id='log-out'>Log Out</a>
+						</li>
+						<li>
+							<a id='go-home'>Back to Home</a>
+						</li>
+					</ul>
 				</div>
-			</header>
-						<!-- HERO -->
-						<section class="uk-section uk-section-small">
-							<div class="uk-container">
-								<div class="uk-height-large uk-cover-container uk-border-rounded">
-									<img src="https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Alt img"
-									 data-uk-cover>
-									<div class="uk-overlay uk-overlay-primary uk-position-cover uk-flex uk-flex-center uk-flex-middle uk-light uk-text-center">
-										<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
-										</div>
-										<div class="uk-width-expand">
-											<form action="cards.html">
-												<div class="uk-inline uk-width-1-1">
-													<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
-													<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-						
+				<div class="uk-navbar-center nav-overlay">
+
+					<h2>Welcome Back
+						<span class="user-name"></span>
+					</h2>
+
+
+			</nav>
+			</div>
+	</header>
+	<!-- HERO -->
+	<section class="uk-section uk-section-small">
+		<div class="uk-container">
+			<div class="uk-height-large uk-cover-container uk-border-rounded">
+				<img src="https://images.pexels.com/photos/262543/pexels-photo-262543.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Alt img"
+				 data-uk-cover>
+				<div class="uk-overlay uk-overlay-primary uk-position-cover uk-flex uk-flex-center uk-flex-middle uk-light uk-text-center">
+					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
+					</div>
+					<div class="uk-width-expand">
+						<form action="cards.html">
+							<div class="uk-inline uk-width-1-1">
+								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
+								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
 							</div>
-							</div>
-						</section>
-			
-			<!-- HERO -->
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		</div>
+	</section>
+
+	<!-- HERO -->
+
+{{#if hastweets}}
+	{{#each items}}
+</div>
+<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
+	<div>
+		<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-hover uk-card-body">
+			<img src={{poster_profile_image}} alt="{{poster_handle}}'s twitter avatar" style="border-radius: 50%;height:65px;">
+			<p>{{poster_name}}</p>
+			<p>{{poster_handle}}</p>
+			<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
+			<button class="uk-button" name="sub-button" handleName={{poster_handle}}>Subscribe!</button>
+			<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite
+				this tweet!
+			</button>
+		</div>
+	</div>
+	<div>
+		<div class="uk-card uk-text-contrast uk-text-center uk-card-hover uk-card-body">
+
+			{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png" style="width:100px;height:100px;">{{/each}}
+			{{/if}}
+		</div>
+	</div>
+
+</div>
+{{/each}}
+{{else}}
+
+<h3 class="uk-text-center">You haven't subscribed to any users!</h3>
+
+{{/if}}
+
+
 <script src="../javascripts/user.js"></script>
+
