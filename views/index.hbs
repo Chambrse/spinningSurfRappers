@@ -1,6 +1,7 @@
 <!--CSS-->
 <style>
-	body {
+	html {
+		min-height: 100%;
 		background: url(http://kb4images.com/images/twitter-wallpaper/37234055-twitter-wallpaper.jpg) no-repeat center center fixed;
 		background-size: cover;
 	}
@@ -54,8 +55,42 @@
 	}
 </style>
 <!--/CSS-->
+<header>
+	<!--HEADER-->
+	<nav style="background-color: black" class="uk-navbar-container" uk-navbar>
+		<div class="uk-navbar-left uk-">
+			<ul class="uk-navbar-nav uk-margin-large-left">
+				<li>
+					<a href="">
+						<h1 class=" uk-text-primary uk-text-bold">Welcome to Twitter Motions</h1>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="uk-navbar-right">
+			<ul class="uk-navbar-nav">
+				<li>
+					{{#unless user.id}}
+					<a uk-toggle="target: #my-id" title="Subscribe" href="">Log In</a>
+					{{else}}
+					<a id="log-out">Log Out</a>
+					{{/unless}}
+				</li>
+				<li>
+					{{#unless user.id}}
+					<a uk-toggle="target: #my-id1" title="Sign Up" href="">Sign Up</a>
+					{{else}}
+					<a id="my-profile">My User Page</a>
+					{{/unless}}
+				</li>
+			</ul>
 
-<!--HEADER-->
+		</div>
+
+	</nav>
+</header>
+
+{{!--
 <div class="uk-offcanvas-content">
 
 	<header id="header" style="background-color: clear;" data-uk-sticky="show-on-up: true; animation: uk-animation-fade; media: @l">
@@ -64,19 +99,27 @@
 				<div class="uk-navbar-left nav-overlay uk-visible@m">
 					<ul id="top-left-buttons" class="uk-navbar-nav">
 						<li>
+							{{#unless user.id}}
 							<a uk-toggle="target: #my-id" title="Subscribe">Log In</a>
+							{{else}}
+							<a id='log-out'>Log Out</a>
+							{{/unless}}
 						</li>
 						<li>
+							{{#unless user.id}}
 							<a uk-toggle="target: #my-id1" title="Sign Up">Sign Up</a>
+							{{else}}
+							<a id='my-profile'>My User Profile</a>
+							{{/unless}}
+						</li>
+						<li>
+							<h2 class="uk-navbar-center">Welcome to Twitter Motions</h2>
 						</li>
 					</ul>
 				</div>
-				<div class="uk-navbar-center nav-overlay">
-					<h2>Welcome to Twitter Motions</h2>
-
 			</nav>
-			</div>
-	</header>
+
+	</header> --}}
 
 	<!-- NAVIGATION -->
 	<div class="uk-container">
@@ -115,10 +158,10 @@
 					<div data-uk-scrollspy="cls: uk-animation-slide-bottom-small">
 					</div>
 					<div class="uk-width-expand">
-						<form action="cards.html">
+						<form class="searchbar">
 							<div class="uk-inline uk-width-1-1">
 								<span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"></span>
-								<input class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
+								<input id="searchbar" class="uk-input uk-width-1-1 search-fld" type="search" placeholder="Search...">
 							</div>
 						</form>
 					</div>
@@ -126,39 +169,83 @@
 			</div>
 
 			<!-- HERO -->
+			<!--smily slide show-->
+			<div uk-slideshow="animation: push">
 
+				<div class="uk-position-relative uk-visible-toggle uk-light">
+
+					<ul class="uk-slideshow-items">
+						<li>
+							<img data-src="/images/joy.png" width="50" height="50" alt="joy" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/confident.png" alt="confident" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/anger.png" alt="anger" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/sadness.png"  alt="sadness" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/fear.png"  alt="fear" uk-cover>
+						</li>
+						<li>
+							<img data-src="/images/tentative.png" alt="tentative" uk-cover>
+						</li>
+					</ul>
+
+					<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+					<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
+				</div>
+
+				<ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
+
+			</div>
 
 			<!-- Trending -->
 			<br>
-			<h1 class="uk-text-center uk-text-contrast">Trending</h1>
+			<h1 class="uk-text-center uk-text-primary">Trending</h1>
 			{{#each items}}
 		</div>
+
 		<div class="uk-child-width-1-2@s uk-grid-match uk-grid-match" uk-grid>
 			<div>
-				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-hover uk-card-body">
+
+				<div class="uk-card uk-text-contrast uk-text-bold uk-text-center uk-card-body">
+
 					<img src={{poster_profile_image}} alt="{{poster_handle}}'s twitter avatar" style="border-radius: 50%;height:65px;">
 					<p>{{poster_name}}</p>
 					<p>{{poster_handle}}</p>
 					<p tweetId="{{poster_handle}} {{tweet_created_at}}">{{tweet_body}}</p>
-					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>Subscribe!</button>
-					<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite this
-						tweet!
+					<button class="uk-button" name="sub-button" handleName={{poster_handle}}>
+						{{!-- {{#if}} --}} Subscribe! {{!-- {{/if}} --}}
+					</button>
+					<button class="uk-button" name="fav-button" handleName={{poster_handle}} tweetId="{{poster_handle}} {{tweet_created_at}}">Favorite this tweet!
 					</button>
 				</div>
 			</div>
 			<div>
-				<div class="uk-card uk-text-contrast uk-text-center uk-card-hover uk-card-body">
+				<div class="uk-card uk-text-contrast uk-text-center uk-card-body">
 
-					{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}<img src="images/{{tone_name}}.png"
-					 style="width:100px;height:100px;">{{/each}} {{/if}}
+					{{#if emotions.document_tone.tones.length}}{{#each emotions.document_tone.tones}}
+					<img src="images/{{tone_name}}.png" style="width:100px;height:100px;">{{/each}} {{/if}}
 				</div>
 			</div>
 
 		</div>
 		{{/each}}
-		<!-- /Trending -->
+		<!-- /Disply Tweets -->
 
-		<h2 id="aboutus" class="uk-text-center">About Us</h2>
+		<h2 id="aboutus" class="uk-text-center" style="color: white">About Us</h2>
+
+		<p style="margin-left:5%; margin-right:5%; color:white">Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
+			a third of the world’s population is using some form of social media, some of the notable users include the President
+			of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage of
+			Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are feeling.
+			We created this website to give you the ability to go beyond the superficial words and get insights on how your friends
+			and favorites celebrities really fell when they are on twitter..</p>
 		<div class="w3-content w3-section">
 			<img class="mySlides" src="/images/about_shane.png" style="width:80%; margin-left:10%; margin-right:10%">
 			<img class="mySlides" src="/images/About_renata.png" style="width:80%; margin-left:10%; margin-right:10%">
@@ -183,22 +270,6 @@
 				setTimeout(carousel, 5000); // Change image every 5 seconds
 			}
 		</script>
-
-		<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
-			a third of the world’s population is using some form of social media, some of the notable users include the President
-			of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage of
-			Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are feeling.
-			We created this website to give you the ability to go beyond the superficial words and get insights on how your friends
-			and favorites celebrities really fell when they are on twitter..</p>
-
-		<!-- /About Us -->
-
-		<p>Social Media is taking over our Lives! There are currently over 2.8 billion social media users worldwide. That is over
-			a third of the world’s population is using some form of social media, some of the notable users include the President
-			of the United States (@POTUS), Queen Elizabeth (@queen_uk), even Kim Kardashian (@KimKardashian). The increase usage of
-			Social Media has created a sense of urgency and need to share to the world, what you are up to and how you are feeling.
-			We created this website to give you the ability to go beyond the superficial words and get insights on how your friends
-			and favorites celebrities really fell when they are on twitter.</p>
 		<!-- /Trending -->
 
 		<!-- This is the modal for Log In -->
@@ -211,7 +282,7 @@
 					<div class="uk-margin">
 						<label class="uk-form-label" for="form-horizontal-text">e-mail</label>
 						<div class="uk-form-controls">
-							<input class="uk-input" id="login-email" name="email" type="email" required placeholder="Please enter your email">
+							<input class="uk-input" id="login-email" name="email" type="text" required placeholder="Please enter your email">
 						</div>
 					</div>
 

@@ -1,5 +1,21 @@
 var db = require("../models");
 
+const keys = require('../keys.js');
+
+// IBM  
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
+var toneAnalyzer = new ToneAnalyzerV3({
+    "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
+    "username": keys.IBM.IBMUsername,
+    "password": keys.IBM.IBMPassword,
+    "version_date": "2017-09-21"
+});
+
+// Twitter API
+var Twitter = require('twitter');
+var client = new Twitter(keys.twitter);
+
 module.exports = function (app) {
   // this call will retrieve all the current subscriptions the current user has
   app.get("/api/user_subs/:userId", function (req, res) {
@@ -22,8 +38,9 @@ module.exports = function (app) {
       };
 
       dbUser.UsersHandles.forEach(userHandle => {
-        ret.subs.push(userHandle.Handle);
+        ret.subs.push(userHandle.Handle.handleName);
       })
+      // res.json(ret);
       res.json(ret);
 
     });
@@ -73,7 +90,8 @@ module.exports = function (app) {
         UserDetailId: userId,
         HandleHandleName: handleName
       });
-      res.json('USER SUBSRIBED TO ' + handleName);
+      // res.json('USER SUBSRIBED TO ' + handleName);
+      res.json(true);
     }
     else {
       db.UsersHandles.destroy({
@@ -82,7 +100,8 @@ module.exports = function (app) {
           HandleHandleName: handleName
         }
       });
-      res.json('USER UNSUBSRIBED TO ' + handleName);
+      // res.json('USER UNSUBSRIBED TO ' + handleName);
+      res.json(false);
     }
   }
 
