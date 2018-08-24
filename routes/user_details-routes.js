@@ -21,6 +21,31 @@ module.exports = function (app) {
   app.get("/api/user_subs/:userId", function (req, res) {
     const userId = req.params.userId;
 
+<<<<<<< HEAD
+=======
+    db.UserDetails.findOne({
+      include: [{
+        model: db.UsersHandles,
+        include: [{
+          model: db.Handles
+        }]
+      }],
+      where: {
+        id: userId
+      }
+    }).then(function (dbUser) {
+      let ret = {
+        userName: dbUser.User_name,
+        subs: []
+      };
+
+      dbUser.UsersHandles.forEach(userHandle => {
+        ret.subs.push(userHandle.Handle.handleName);
+      })
+      res.json(ret);
+
+    });
+>>>>>>> 0165d88a1755315fe24cd3861b7bbeb5c0a7b2ab
   });
   // API call to handle user's subscribing to certain handles
   // User ID is sent by front end via req.body.id
@@ -67,7 +92,8 @@ module.exports = function (app) {
         UserDetailId: userId,
         HandleHandleName: handleName
       });
-      res.json('USER SUBSRIBED TO ' + handleName);
+      // res.json('USER SUBSRIBED TO ' + handleName);
+      res.json(true);
     }
     else {
       db.UsersHandles.destroy({
@@ -76,7 +102,8 @@ module.exports = function (app) {
           HandleHandleName: handleName
         }
       });
-      res.json('USER UNSUBSRIBED TO ' + handleName);
+      // res.json('USER UNSUBSRIBED TO ' + handleName);
+      res.json(false);
     }
   }
 
