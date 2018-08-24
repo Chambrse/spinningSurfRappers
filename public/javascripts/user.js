@@ -16,6 +16,7 @@ $(document).ready(function () {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -32,5 +33,7 @@ $(document).ready(function () {
         }); */
     });
 
+=======
+>>>>>>> d0683949546956ae52d91fe611ad613705741680
 
 });
