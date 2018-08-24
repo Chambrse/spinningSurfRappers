@@ -4,14 +4,7 @@ function getUserData(cb) {
         cb(data)
 
     });
-
-    $("#searchbar").on("submit", function() {
-        console.log($("#searchbar").val());
-        $.get("/ibm/" + $("#searchbar").val().trim()).then(function (data) {
-
-        });
-    });
-
+    
     $("form.searchbar").on("submit", function(e) {
         e.preventDefault();
         console.log($("#searchbar").val().trim());
@@ -139,12 +132,6 @@ $(document).ready(function () {
             $(".error-text").show();
         });
     }
-
-    // SUBSCRIBE JQUERY
-
-
-    // FAVORITE JQUERY
-
 
     // On Startup
     $(".error-text").hide();
