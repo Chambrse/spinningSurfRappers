@@ -21,9 +21,6 @@ module.exports = function (app) {
   app.get("/api/user_subs/:userId", function (req, res) {
     const userId = req.params.userId;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     db.UserDetails.findOne({
       include: [{
         model: db.UsersHandles,
@@ -46,9 +43,6 @@ module.exports = function (app) {
       res.json(ret);
 
     });
->>>>>>> 0165d88a1755315fe24cd3861b7bbeb5c0a7b2ab
-=======
->>>>>>> d0683949546956ae52d91fe611ad613705741680
   });
   // API call to handle user's subscribing to certain handles
   // User ID is sent by front end via req.body.id

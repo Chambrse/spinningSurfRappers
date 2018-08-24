@@ -25,10 +25,6 @@ var toneAnalyzer = new ToneAnalyzerV3({
 
 /* GET user page */
 router.get('/user', isAuthenticated, function (req, res, next) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d0683949546956ae52d91fe611ad613705741680
 
   const userId = req.user.id;
 
@@ -121,12 +117,6 @@ router.get('/user', isAuthenticated, function (req, res, next) {
 
   });
 
-<<<<<<< HEAD
-=======
-  res.render('user');
->>>>>>> 0165d88a1755315fe24cd3861b7bbeb5c0a7b2ab
-=======
->>>>>>> d0683949546956ae52d91fe611ad613705741680
 });
 
 //get about page
@@ -136,12 +126,6 @@ router.get('/about', function (req, res, next) {
 
 
 router.get('/', function (req, res, next) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> d0683949546956ae52d91fe611ad613705741680
   if (req.user) {
     user = {
       username: req.user.User_name,
@@ -152,12 +136,6 @@ router.get('/', function (req, res, next) {
   } else {
     user = {}
   }
-
-<<<<<<< HEAD
->>>>>>> 0165d88a1755315fe24cd3861b7bbeb5c0a7b2ab
-=======
-
->>>>>>> d0683949546956ae52d91fe611ad613705741680
   db.popularTweets.findAll({ order: [['tweet_created_at', 'DESC']] }).then(function (data) {
 
     data.forEach(element => {
