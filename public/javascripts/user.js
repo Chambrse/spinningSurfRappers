@@ -16,11 +16,4 @@ $(document).ready(function () {
 
 
 
-
-        $.get('/api/user_subs/' + thisUser.id).then(function (data) {
-            console.log(data);
-
-            //twitter api call to get subs to display
-        });
-    })
 });
