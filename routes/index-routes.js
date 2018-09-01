@@ -145,7 +145,8 @@ router.get('/', function (req, res, next) {
 
     res.render("index", {
       items: data,
-      user: user
+      user: user,
+      trending: true
     });
   });
 });
@@ -267,7 +268,7 @@ router.get('/ibm/:handle', function (req, res, next) {
           });
 
           if (numberOfCalls === tweets.length) {
-            res.render("index", { items: analysisArray });
+            res.render("index", { items: analysisArray, trending: false });
           };
 
         };
