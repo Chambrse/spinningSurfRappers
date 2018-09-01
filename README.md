@@ -3,7 +3,28 @@ Project #2
 
 The Tweet Emotion Tracker
 
-This app allows the users to login and search for tweets by entering the name of a person or a search term. It displays the tweets and the emotion percentage in the tweet. It also allows to save your favorite tweets.
+Have you ever wanted to know how your favorite celeb or representative is feeling? Well now you can! With twitter motions tweet analyzer, you can simply type in any twitter handle and that accounts most recent tweets will be passed through the IBM Watson Tone analyzer and you'll finally know if kim kardashian is having a good day.
+
+### Deployed version:
+https://spinning-surf-rappers.herokuapp.com/
+
+## Contributors
+GAYATHRI CHANDRA SEKAR
+MATTHEW BERTRANDT
+RENATA WATTIER
+SHANE CHAMBRY
+
+## Key Tools & Technologies
+* NodeJS
+* Express
+* mySQL
+* Heroku
+* IBM Watson API
+* Twitter API
+* UI-kit
+* Passport
+* Handlebars
+
 
 
 
