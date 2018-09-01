@@ -1,6 +1,7 @@
 function getUserData(cb) {
     $.get("/api/user_data").then(function (data) {
-
+        console.log("inside ajax");
+        console.log(data);
         cb(data)
 
     });
@@ -41,6 +42,8 @@ function logOut(){
 
 $(document).ready(function () {
 
+    console.log("client.js loaded");
+
     $("form.searchbar").on("submit", function(e) {
         e.preventDefault();
         console.log($("#searchbar").val().trim());
@@ -48,8 +51,22 @@ $(document).ready(function () {
             // console.log(data);
             var bodyContent = data;
             $('body').html(bodyContent);
+
+            $("#trendingTitle").get(0).scrollIntoView();
         });
     
+    });
+
+    $(".searchButton").on("click", function() {
+        console.log($(this).text());
+        $.get("/ibm/" + $(this).text()).then(function (data) {
+            // console.log(data);
+            var bodyContent = data;
+            $('body').html(bodyContent);
+
+            $("#trendingTitle").get(0).scrollIntoView();
+
+        });
     });
 
 
